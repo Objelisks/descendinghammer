@@ -1,0 +1,4 @@
+//dials
+//switches
+//lights
+//buttons
