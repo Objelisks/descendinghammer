@@ -19,7 +19,7 @@ public:
 	GameState();
 	std::vector<Enemy> enemies;
 	std::vector<Bullet> bullets;
-	Screen currentScreen;
+	Screen* currentScreen;
 	Player player;
 	std::map<std::string,int> game_keys;
 };

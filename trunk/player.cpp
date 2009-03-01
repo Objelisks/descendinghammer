@@ -1,26 +1,36 @@
 #include "player.h"
+#include "allegro.h"
 
 Player::Player()
 {
-
+	pos.x = 0;
+	pos.y = 0;
 };
 
 void Player::moveUp(int amt)
 {
-	pos.y = pos.y + 10;
+	if(pos.y < SCREEN_H){
+		pos.y = pos.y + 1;
+	}
 };
 
 void Player::moveDown(int amt)
 {
-	pos.y = pos.y - 10;
+	if(pos.y > 0){
+		pos.y = pos.y - 1;
+	}
 };
 
 void Player::moveLeft(int amt)
 {
-	pos.x = pos.x - 10;
+	if(pos.x > 0){
+		pos.x = pos.x - 1;
+	}
 };
 
 void Player::moveRight(int amt)
 {
-	pos.x = pos.x + 10;
+	if(pos.x < SCREEN_W){
+		pos.x = pos.x + 10;
+	}
 };

@@ -3,7 +3,7 @@
 
 class Screen {
 public:
-	void draw();
+	virtual void draw(){};
 };
 
 #endif

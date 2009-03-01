@@ -9,11 +9,11 @@ bool GAME_ENDED = false;
 
 std::string toString(int i)
 {
-std::string s;
-std::stringstream out;
-out << i;
-s = out.str();
-return s;
+	std::string s;
+	std::stringstream out;
+	out << i;
+	s = out.str();
+	return s;
 };
 
 void mainKeyCheck()
@@ -33,7 +33,7 @@ void loop()
 {
 	mainKeyCheck();
 	gameKeyCheck();
-	theState.currentScreen.draw();
+	theState.currentScreen->draw();
 	
 	//menus
 
@@ -67,8 +67,8 @@ int main(void)
 		{
 			loop();
 			frames++;
-			textout_ex(screen,font,toString(frames/((clock()-begin+1)/CLOCKS_PER_SEC+1)).c_str(),20,20,1,0);
-			textout_ex(screen,font,toString(frames).c_str(),20,50,1,0);
+			textout_ex(screen,font,"fps:",5,20,1,0);
+			textout_ex(screen,font,toString(frames/((clock()-begin+1)/CLOCKS_PER_SEC+1)).c_str(),40,20,1,0);
 		}
 
         return 0;
