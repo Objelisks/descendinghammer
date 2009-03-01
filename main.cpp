@@ -1,5 +1,5 @@
-#include <string>
-#include <allegro.h>
+#include "allegro.h"
+#include "gameState.h"
 #include "inputControl.h"
 
 bool GAME_ENDED = false;
@@ -21,11 +21,7 @@ void loop()
 {
 	mainKeyCheck();
 	gameKeyCheck();
-	//textprintf_ex(screen,font,50,50,palette_color[2],-1,"%d, %d",SCREEN_W,SCREEN_H);
-	/*if(rand()%300 == 0)
-	{
-		putpixel(screen,mouse_x+(rand()%30-15),mouse_y+(rand()%30-15),rand()%64);
-	}*/
+	theState->currentScreen.draw();
 	
 	//menus
 
@@ -49,6 +45,9 @@ int main(void)
 		set_color_depth(16);
 		//Learn palettes
 		show_mouse(screen);
+
+		//INITIALIZE ULTRA STATE
+		theState = &GameState();
 
 		while(!GAME_ENDED)
 		{

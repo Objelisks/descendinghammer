@@ -188,6 +188,18 @@
 				RelativePath=".\main.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\mainScreen.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\player.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\screen.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -224,6 +236,18 @@
 			</File>
 			<File
 				RelativePath=".\minimap.h"
+				>
+			</File>
+			<File
+				RelativePath=".\player.h"
+				>
+			</File>
+			<File
+				RelativePath=".\screen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ship.h"
 				>
 			</File>
 		</Filter>
