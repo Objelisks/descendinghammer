@@ -1,8 +1,20 @@
 #include "allegro.h"
 #include "gameState.h"
 #include "inputControl.h"
+#include "ctime"
+#include "string"
+#include "sstream"
 
 bool GAME_ENDED = false;
+
+std::string toString(int i)
+{
+std::string s;
+std::stringstream out;
+out << i;
+s = out.str();
+return s;
+};
 
 void mainKeyCheck()
 {
@@ -10,18 +22,18 @@ void mainKeyCheck()
 	{
 		GAME_ENDED = true;
 	}
-}
+};
 
 void gameKeyCheck()
 {
 	handleInput();
-}
+};
 
 void loop()
 {
 	mainKeyCheck();
 	gameKeyCheck();
-	theState->currentScreen.draw();
+	theState.currentScreen.draw();
 	
 	//menus
 
@@ -34,7 +46,7 @@ void loop()
 	//ask for input (what is an interrupt)
 	//use input
 	//update everything
-}
+};
 
 int main(void)
 {
@@ -47,14 +59,18 @@ int main(void)
 		show_mouse(screen);
 
 		//INITIALIZE ULTRA STATE
-		theState = &GameState();
+		theState = GameState();
 
+		int frames = 0;
+		clock_t begin = clock();
 		while(!GAME_ENDED)
 		{
 			loop();
-			
+			frames++;
+			textout_ex(screen,font,toString(frames/((clock()-begin+1)/CLOCKS_PER_SEC+1)).c_str(),20,20,1,0);
+			textout_ex(screen,font,toString(frames).c_str(),20,50,1,0);
 		}
 
         return 0;
-}
+};
 END_OF_MAIN()
