@@ -4,12 +4,12 @@
 
 void clearScreen()
 {
-	clear_to_color(screen,0);
+	clear_bitmap(screen);
 };
 
 void drawShip()
 {
-	putpixel(screen,theState.player.pos.x,theState.player.pos.y,1);
+	rectfill(screen,theState.player.pos.x-10,theState.player.pos.y-10,theState.player.pos.x+10,theState.player.pos.y+10,1);
 };
 
 
@@ -20,6 +20,6 @@ MainScreen::MainScreen()
 };
 
 void MainScreen::draw(){
-clearScreen();
-drawShip();
+	clearScreen();
+	drawShip();
 };

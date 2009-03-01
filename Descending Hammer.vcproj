@@ -196,10 +196,6 @@
 				RelativePath=".\player.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\screen.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
