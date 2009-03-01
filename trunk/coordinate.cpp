@@ -1,8 +1,4 @@
-class Coordinate
-{
-public:
-	Coordinate() {x=0;y=0;};
-	Coordinate(int a, int b) {x=a;y=b;};
-	int x;
-	int y;
-};
+#include "coordinate.h"
+
+Coordinate::Coordinate() {Coordinate::x=0;Coordinate::y=0;};
+Coordinate::Coordinate(int a, int b) {Coordinate::x=a;Coordinate::y=b;};
