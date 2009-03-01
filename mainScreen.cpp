@@ -2,7 +2,6 @@
 #include "allegro.h"
 #include "gameState.h"
 
-
 void clearScreen()
 {
 	clear_to_color(screen,0);
@@ -10,7 +9,7 @@ void clearScreen()
 
 void drawShip()
 {
-	putpixel(screen,theState->player.pos.x,theState->player.pos.y,1);
+	putpixel(screen,theState.player.pos.x,theState.player.pos.y,1);
 };
 
 

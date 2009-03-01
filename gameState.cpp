@@ -6,13 +6,13 @@
 
 GameState::GameState()
 {
-	GameState::enemies = std::vector<Enemy>();
-	GameState::bullets = std::vector<Bullet>();
-	GameState::player = Player();
-	GameState::currentScreen = MainScreen();
-	GameState::game_keys = std::map<std::string,int>();
-	game_keys.insert(std::make_pair<std::string,int>("up",key[KEY_UP]));
-	game_keys.insert(std::make_pair<std::string,int>("down",key[KEY_DOWN]));
-	game_keys.insert(std::make_pair<std::string,int>("left",key[KEY_LEFT]));
-	game_keys.insert(std::make_pair<std::string,int>("right",key[KEY_RIGHT]));
+	enemies = std::vector<Enemy>();
+	bullets = std::vector<Bullet>();
+	player = Player();
+	currentScreen = MainScreen();
+	game_keys = std::map<std::string,int>();
+	game_keys["up"] = key[KEY_UP];
+	game_keys["down"] = key[KEY_DOWN];
+	game_keys["left"] = key[KEY_LEFT];
+	game_keys["right"] = key[KEY_RIGHT];
 };

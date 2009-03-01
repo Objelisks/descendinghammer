@@ -24,7 +24,7 @@ public:
 	std::map<std::string,int> game_keys;
 };
 
-static GameState* theState;
+static GameState theState;
 
 
 #endif

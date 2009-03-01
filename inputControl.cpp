@@ -1,23 +1,24 @@
 #include "inputControl.h"
 #include "allegro.h"
 #include "gameState.h"
+#include "map"
 
 void handleInput()
 {
-	if(key[theState->game_keys["down"]])
+	if(key[theState.game_keys["down"]])
 	{
-		theState->player.moveDown(1);
+		theState.player.moveDown(1);
 	}
-	if(key[theState->game_keys["up"]])
+	if(key[theState.game_keys["up"]])
 	{
-		theState->player.moveUp(1);
+		theState.player.moveUp(1);
 	}
-	if(key[theState->game_keys["left"]])
+	if(key[theState.game_keys["left"]])
 	{
-		theState->player.moveLeft(1);
+		theState.player.moveLeft(1);
 	}
-	if(key[theState->game_keys["right"]])
+	if(key[theState.game_keys["right"]])
 	{
-		theState->player.moveRight(1);
+		theState.player.moveRight(1);
 	}
 };
