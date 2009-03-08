@@ -112,7 +112,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				RuntimeLibrary="2"
+				AdditionalIncludeDirectories="C:\Program Files (x86)\boost\boost_1_37\;"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -128,6 +129,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="alleg.lib"
+				AdditionalLibraryDirectories="C:\Program Files (x86)\boost\boost_1_37\lib\;"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
