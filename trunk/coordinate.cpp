@@ -1,4 +1,4 @@
 #include "coordinate.h"
 
-Coordinate::Coordinate() {Coordinate::x=0;Coordinate::y=0;};
-Coordinate::Coordinate(int a, int b) {Coordinate::x=a;Coordinate::y=b;};
+Coordinate::Coordinate() {x=0;y=0;z=0;};
+Coordinate::Coordinate(int a, int b, int c) {x=a;y=b;y=c;};

@@ -1,25 +1,30 @@
 #include "mainScreen.h"
 #include "allegro.h"
 #include "gameState.h"
+#include "subScreen.h"
+#include "boost/ptr_container/ptr_list.hpp"
 
-void clearScreen()
-{
-	clear_bitmap(screen);
-};
-
-void drawShip()
-{
-	rectfill(screen,theState.player.pos.x-10,theState.player.pos.y-10,theState.player.pos.x+10,theState.player.pos.y+10,1);
-};
-
-
+#include "frontWindow.h"
+#include "miniMap.h"
 
 MainScreen::MainScreen()
 {
-
+	MainScreen::m_screen = create_bitmap(SCREEN_W,SCREEN_H);
+	subScreens = boost::ptr_list<SubScreen>();
+	subScreens.insert(subScreens.begin(), new FrontWindow(m_screen));
+	subScreens.insert(subScreens.begin(), new MiniMap(m_screen));
 };
 
+void MainScreen::drawSubScreens()
+{
+	for(boost::ptr_list<SubScreen>::iterator iter=subScreens.begin();iter!=subScreens.end();iter++)
+	{
+		iter->draw();
+	}
+};
+
+
 void MainScreen::draw(){
-	clearScreen();
-	drawShip();
+	drawSubScreens();
+	blit(m_screen,screen,0,0,0,0,m_screen->w,m_screen->h);
 };

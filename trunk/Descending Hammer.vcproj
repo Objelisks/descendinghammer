@@ -177,6 +177,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\frontWindow.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\gameState.cpp"
 				>
 			</File>
@@ -190,6 +194,10 @@
 			</File>
 			<File
 				RelativePath=".\mainScreen.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\miniMap.cpp"
 				>
 			</File>
 			<File
@@ -215,6 +223,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\frontWindow.h"
+				>
+			</File>
+			<File
 				RelativePath=".\gameState.h"
 				>
 			</File>
@@ -231,7 +243,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\minimap.h"
+				RelativePath=".\miniMap.h"
 				>
 			</File>
 			<File
@@ -244,6 +256,10 @@
 			</File>
 			<File
 				RelativePath=".\ship.h"
+				>
+			</File>
+			<File
+				RelativePath=".\subScreen.h"
 				>
 			</File>
 		</Filter>

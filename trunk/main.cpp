@@ -51,15 +51,18 @@ void loop()
 int main(void)
 {
         allegro_init();
-		install_keyboard();
+		int erra = install_keyboard();
+		if(erra != 0)
+		{
+		allegro_message("ohshi");
+		}
 		install_mouse();
-		set_gfx_mode(GFX_AUTODETECT_WINDOWED,640,480,0,0);
 		set_color_depth(16);
-		//Learn palettes
+		set_gfx_mode(GFX_AUTODETECT_WINDOWED,640,480,0,0);
 		show_mouse(screen);
 
 		//INITIALIZE ULTRA STATE
-		theState = GameState();
+		theState.Initialize();
 
 		int frames = 0;
 		clock_t begin = clock();
@@ -67,8 +70,8 @@ int main(void)
 		{
 			loop();
 			frames++;
-			textout_ex(screen,font,"fps:",5,20,1,0);
-			textout_ex(screen,font,toString(frames/((clock()-begin+1)/CLOCKS_PER_SEC+1)).c_str(),40,20,1,0);
+			textout_ex(screen,font,"fps:",5,20,makecol(255,255,255),0);
+			textout_ex(screen,font,toString(frames/((clock()-begin+1)/CLOCKS_PER_SEC+1)).c_str(),40,20,makecol(255,255,255),0);
 		}
 
         return 0;
