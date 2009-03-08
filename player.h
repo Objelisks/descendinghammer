@@ -5,10 +5,10 @@
 class Player : public Ship {
 public:
 	Player();
-	void Player::moveLeft(int amt);
-	void Player::moveUp(int amt);
-	void Player::moveRight(int amt);
-	void Player::moveDown(int amt);
+	void moveLeft(int amt);
+	void moveUp(int amt);
+	void moveRight(int amt);
+	void moveDown(int amt);
 };
 
 #endif

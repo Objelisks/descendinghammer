@@ -2,19 +2,9 @@
 #include "gameState.h"
 #include "inputControl.h"
 #include "ctime"
-#include "string"
-#include "sstream"
+#include "common.h"
 
 bool GAME_ENDED = false;
-
-std::string toString(int i)
-{
-	std::string s;
-	std::stringstream out;
-	out << i;
-	s = out.str();
-	return s;
-};
 
 void mainKeyCheck()
 {
@@ -33,7 +23,7 @@ void loop()
 {
 	mainKeyCheck();
 	gameKeyCheck();
-	theState.currentScreen->draw();
+	theState()->currentScreen->draw();
 	
 	//menus
 
@@ -54,7 +44,7 @@ int main(void)
 		int erra = install_keyboard();
 		if(erra != 0)
 		{
-		allegro_message("ohshi");
+			allegro_message("ohshi");
 		}
 		install_mouse();
 		set_color_depth(16);
@@ -62,7 +52,7 @@ int main(void)
 		show_mouse(screen);
 
 		//INITIALIZE ULTRA STATE
-		theState.Initialize();
+
 
 		int frames = 0;
 		clock_t begin = clock();
