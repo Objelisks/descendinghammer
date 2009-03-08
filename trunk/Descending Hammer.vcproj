@@ -169,6 +169,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\common.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\coordinate.cpp"
 				>
 			</File>
@@ -204,6 +208,10 @@
 				RelativePath=".\player.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\ship.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -212,6 +220,10 @@
 			>
 			<File
 				RelativePath=".\bullet.h"
+				>
+			</File>
+			<File
+				RelativePath=".\common.h"
 				>
 			</File>
 			<File

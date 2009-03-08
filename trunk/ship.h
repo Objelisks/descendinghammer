@@ -6,7 +6,11 @@
 class Ship
 {
 public:
+	Ship();
 	Coordinate pos;
+	int X();
+	int Y();
+	int Z();
 };
 
 #endif

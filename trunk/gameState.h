@@ -17,18 +17,22 @@
 
 class GameState {
 public:
-	GameState();
+	static GameState* Instance();
 	void Initialize();
 	std::vector<Enemy> enemies;
 	std::vector<Bullet> bullets;
 	Screen* currentScreen;
 	Player player;
 	std::map<std::string,int> game_keys;
+protected:
+	GameState();
+	GameState(const GameState&);
+	GameState& operator= (const GameState&);
 private:
 	void spawnEnemy();
+	static GameState* instance;
 };
 
-static GameState theState;
-
+GameState* theState();
 
 #endif

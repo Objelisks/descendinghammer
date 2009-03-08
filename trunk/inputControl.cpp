@@ -1,7 +1,10 @@
 #include "inputControl.h"
 #include "allegro.h"
 #include "gameState.h"
-#include "map"
+#include "coordinate.h"
+#include "player.h"
+#include "common.h"
+
 
 void handleInput()
 {
@@ -10,20 +13,20 @@ void handleInput()
 		poll_keyboard();
 	}
 
-	if(key[theState.game_keys["down"]])
+	if(key[KEY_DOWN])
 	{
-		theState.player.moveDown(1);
+		theState()->player.moveDown(1);
 	}
-	if(key[theState.game_keys["up"]])
+	if(key[KEY_UP])
 	{
-		theState.player.moveUp(1);
+		theState()->player.moveUp(1);
 	}
-	if(key[theState.game_keys["left"]])
+	if(key[KEY_LEFT])
 	{
-		theState.player.moveLeft(1);
+		theState()->player.moveLeft(1);
 	}
-	if(key[theState.game_keys["right"]])
+	if(key[KEY_RIGHT])
 	{
-		theState.player.moveRight(1);
+		theState()->player.moveRight(1);
 	}
 };
