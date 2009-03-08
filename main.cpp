@@ -6,6 +6,26 @@
 
 bool GAME_ENDED = false;
 
+
+//timing code
+volatile int frameCounter;
+
+void getFrameRate()
+{
+	frameRate = frameCounter;
+	frameCounter = 0;
+};
+END_OF_FUNCTION(getFrameRate);
+
+volatile int speed_counter = 0;
+void incSpeedCounter()
+{
+	speed_counter++;
+};
+END_OF_FUNCTION(incSpeedCounter)
+
+
+
 void mainKeyCheck()
 {
 	if(key[KEY_ESC])
@@ -19,12 +39,11 @@ void gameKeyCheck()
 	handleInput();
 };
 
-void loop()
+void logic()
 {
 	mainKeyCheck();
 	gameKeyCheck();
-	theState()->currentScreen->draw();
-	
+
 	//menus
 
 	//draw base cockpit
@@ -36,6 +55,11 @@ void loop()
 	//ask for input (what is an interrupt)
 	//use input
 	//update everything
+};
+
+void draw()
+{
+	theState()->currentScreen->draw();
 };
 
 int main(void)
@@ -51,17 +75,30 @@ int main(void)
 		set_gfx_mode(GFX_AUTODETECT_WINDOWED,640,480,0,0);
 		show_mouse(screen);
 
-		//INITIALIZE ULTRA STATE
+		//timing code
+		LOCK_VARIABLE(speed_counter);
+		LOCK_FUNCTION(incSpeedCounter);
+		LOCK_FUNCTION(getFrameRate);
+		install_int_ex(incSpeedCounter, BPS_TO_TIMER(60));
+		install_int_ex(getFrameRate, BPS_TO_TIMER(1));
 
-
-		int frames = 0;
-		clock_t begin = clock();
+		bool needRedraw = false;
 		while(!GAME_ENDED)
 		{
-			loop();
-			frames++;
-			textout_ex(screen,font,"fps:",5,20,makecol(255,255,255),0);
-			textout_ex(screen,font,toString(frames/((clock()-begin+1)/CLOCKS_PER_SEC+1)).c_str(),40,20,makecol(255,255,255),0);
+			while(speed_counter > 0) 
+			{
+				logic();
+
+				speed_counter--;
+				needRedraw = true;
+			}
+			if(needRedraw)
+			{
+				draw();
+
+				frameCounter++;
+				needRedraw = false;
+			}
 		}
 
         return 0;

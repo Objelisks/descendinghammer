@@ -4,5 +4,6 @@
 #include "string"
 
 std::string toString(int i);
+extern volatile int frameRate;
 
 #endif
