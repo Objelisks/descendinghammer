@@ -10,3 +10,5 @@ std::string toString(int i)
 	s = out.str();
 	return s;
 };
+
+volatile int frameRate = 0;
