@@ -5,9 +5,10 @@
 class Coordinate{
 public:
 	Coordinate();
-	Coordinate(int a, int b);
+	Coordinate(int a, int b, int c);
 	int x;
 	int y;
+	int z;
 };
 
 #endif

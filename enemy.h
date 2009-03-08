@@ -7,6 +7,7 @@
 
 struct Enemy{
 public:
+	Enemy();
 	Coordinate pos;
 	int health;
 	void update();

@@ -5,6 +5,11 @@
 
 void handleInput()
 {
+	if(keyboard_needs_poll())
+	{
+		poll_keyboard();
+	}
+
 	if(key[theState.game_keys["down"]])
 	{
 		theState.player.moveDown(1);
