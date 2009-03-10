@@ -28,6 +28,6 @@ void MainScreen::drawSubScreens()
 void MainScreen::draw(){
 	drawSubScreens();
 	textout_ex(m_screen,font,toString(frameRate).c_str(),5,5,makecol(255,255,255),0);
-	textout_ex(m_screen,font,toString(theState()->player.pos.x).append(", "+toString(theState()->player.pos.y)).append(", "+toString(theState()->player.pos.z)).c_str(),5,25,makecol(255,255,255),0);
+	textout_ex(m_screen,font,((toString(theState()->player.pos.x).append(", "+toString(theState()->player.pos.y))).append(", "+toString(theState()->player.pos.z))).c_str(),5,25,makecol(255,255,255),0);
 	blit(m_screen,screen,0,0,0,0,m_screen->w,m_screen->h);
 };

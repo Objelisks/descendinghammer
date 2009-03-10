@@ -23,13 +23,15 @@ public:
 	std::vector<Bullet> bullets;
 	Screen* currentScreen;
 	Player player;
-	std::map<std::string,int> game_keys;
+	//std::map<std::string,int> game_keys;
+	void updateWorld();
+	void spawnEnemy();
+	void spawnBullet(Coordinate co, int dmg, int trail);
 protected:
 	GameState();
 	GameState(const GameState&);
 	GameState& operator= (const GameState&);
 private:
-	void spawnEnemy();
 	static GameState* instance;
 };
 

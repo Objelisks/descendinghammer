@@ -9,6 +9,7 @@ public:
 	void moveUp(int amt);
 	void moveRight(int amt);
 	void moveDown(int amt);
+	void fire();
 };
 
 #endif

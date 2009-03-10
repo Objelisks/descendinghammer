@@ -1,6 +1,7 @@
 #include "player.h"
 #include "coordinate.h"
 #include "allegro.h"
+#include "gameState.h"
 #include "common.h"
 
 Player::Player() : Ship()
@@ -34,4 +35,9 @@ void Player::moveRight(int amt)
 	if(pos.x < SCREEN_W){
 		pos.setX(pos.x + 1);
 	}
+};
+
+void Player::fire()
+{
+	theState()->spawnBullet(pos,1,5);
 };

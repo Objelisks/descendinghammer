@@ -29,4 +29,8 @@ void handleInput()
 	{
 		theState()->player.moveRight(5);
 	}
+	if(key[KEY_X])
+	{
+		theState()->player.fire();
+	}
 };

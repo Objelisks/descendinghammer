@@ -43,6 +43,7 @@ void logic()
 {
 	mainKeyCheck();
 	gameKeyCheck();
+	theState()->updateWorld();
 
 	//menus
 
