@@ -5,8 +5,11 @@
 class Bullet{
 public:
 	Bullet();
+	Bullet(Coordinate co, int dmg, int t);
 	Coordinate pos;
-	int dmg;
+	int damage;
+	int trail;
+	void update();
 };
 
 #endif
