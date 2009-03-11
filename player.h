@@ -10,6 +10,7 @@ public:
 	void moveRight(int amt);
 	void moveDown(int amt);
 	void fire();
+	int cooldown;
 };
 
 #endif

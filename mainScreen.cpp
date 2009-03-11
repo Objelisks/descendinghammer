@@ -10,7 +10,10 @@
 
 MainScreen::MainScreen()
 {
-	MainScreen::m_screen = create_bitmap(SCREEN_W,SCREEN_H);
+	m_screen = create_bitmap(SCREEN_W,SCREEN_H);
+	BITMAP* img = load_bitmap("hud.bmp",0);
+	hud = get_rle_sprite(img);
+	destroy_bitmap(img);
 	subScreens = boost::ptr_list<SubScreen>();
 	subScreens.insert(subScreens.begin(), new FrontWindow(m_screen));
 	subScreens.insert(subScreens.begin(), new MiniMap(m_screen, 250, 150));
@@ -29,5 +32,6 @@ void MainScreen::draw(){
 	drawSubScreens();
 	textout_ex(m_screen,font,toString(frameRate).c_str(),5,5,makecol(255,255,255),0);
 	textout_ex(m_screen,font,((toString(theState()->player.pos.x).append(", "+toString(theState()->player.pos.y))).append(", "+toString(theState()->player.pos.z))).c_str(),5,25,makecol(255,255,255),0);
+	draw_rle_sprite(m_screen,hud,0,0);
 	blit(m_screen,screen,0,0,0,0,m_screen->w,m_screen->h);
 };
