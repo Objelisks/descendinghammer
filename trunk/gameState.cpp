@@ -1,7 +1,7 @@
 #include "gamestate.h"
 #include "player.h"
 #include "bullet.h"
-#include "vector"
+#include "list"
 #include "mainScreen.h"
 #include "coordinate.h"
 #include "screen.h"
@@ -37,9 +37,17 @@ void GameState::Initialize()
 
 void GameState::updateWorld()
 {
-	for(std::vector<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end(); iter++)
+	for(std::list<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end();)
 	{
-		iter->update();
+		if(iter->dead)
+		{
+			iter = bullets.erase(iter);
+		}
+		else
+		{
+			iter->update();
+			iter++;
+		}
 	}
 };
 

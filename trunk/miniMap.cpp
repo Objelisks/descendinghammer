@@ -40,7 +40,7 @@ void MiniMap::draw()
 		hline(m_subScreen,1,i,width-2,col);
 	}
 	circle(m_subScreen,theState()->player.pos.x*xScale,theState()->player.pos.y*yScale,5,colors[3]);
-	for(std::vector<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end(); iter++)
+	for(std::list<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end(); iter++)
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
