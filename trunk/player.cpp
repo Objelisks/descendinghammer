@@ -7,6 +7,7 @@
 Player::Player() : Ship()
 {
 	pos = Coordinate(20,20,20);
+	cooldown = 0;
 };
 
 void Player::moveUp(int amt)
@@ -39,5 +40,12 @@ void Player::moveRight(int amt)
 
 void Player::fire()
 {
-	theState()->spawnBullet(pos,1,5);
+	if(cooldown == 0)
+	{
+		Coordinate firePos = pos;
+		firePos.x += -5+rand()%10;
+		firePos.y -= 10;
+		theState()->spawnBullet(firePos,1,5);
+		cooldown = 8 + rand()%4;
+	}
 };

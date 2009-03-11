@@ -16,6 +16,7 @@ public:
 	boost::ptr_list<SubScreen> subScreens;
 private:
 	void drawSubScreens();
+	RLE_SPRITE* hud;
 };
 
 #endif

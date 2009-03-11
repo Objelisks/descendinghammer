@@ -49,6 +49,10 @@ void GameState::updateWorld()
 			iter++;
 		}
 	}
+	if(player.cooldown > 0)
+	{
+		player.cooldown--;
+	}
 };
 
 void GameState::spawnEnemy()
