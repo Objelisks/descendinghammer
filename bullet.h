@@ -9,6 +9,7 @@ public:
 	Coordinate pos;
 	int damage;
 	int trail;
+	bool dead;
 	void update();
 };
 

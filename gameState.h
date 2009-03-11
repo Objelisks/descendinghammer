@@ -11,7 +11,7 @@
 #include "bullet.h"
 #include "player.h"
 #include "screen.h"
-#include "vector"
+#include "list"
 #include "string"
 #include "map"
 
@@ -19,8 +19,8 @@ class GameState {
 public:
 	static GameState* Instance();
 	void Initialize();
-	std::vector<Enemy> enemies;
-	std::vector<Bullet> bullets;
+	std::list<Enemy> enemies;
+	std::list<Bullet> bullets;
 	Screen* currentScreen;
 	Player player;
 	//std::map<std::string,int> game_keys;
