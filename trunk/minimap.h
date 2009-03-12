@@ -17,7 +17,7 @@ public:
 	MiniMap(BITMAP* parentScreen,int w, int h);
 	void draw();
 private:
-	int colors[7];
+	int colors[9];
 	float xScale;
 	float yScale;
 	int width;

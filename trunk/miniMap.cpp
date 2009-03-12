@@ -21,10 +21,11 @@ MiniMap::MiniMap(BITMAP* parentScreen,int w, int h)
 	colors[3] = makecol(0,128,16);
 
 	//bullet colors
-	colors[4] = makecol(64,16,16);
-	colors[5] = makecol(128,32,16);
-	colors[6] = makecol(200,48,16);
-	colors[7] = makecol(255,96,48);
+	colors[4] = makecol(250,201,58);
+	colors[5] = makecol(255,174,46);
+	colors[6] = makecol(245,119,18);
+	colors[7] = makecol(255,82,21);
+	colors[8] = makecol(250,19,0);
 	xScale = (float)width/(float)SCREEN_W;
 	yScale = (float)height/(float)SCREEN_H;
 };
@@ -44,7 +45,7 @@ void MiniMap::draw()
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
-			putpixel(m_subScreen,iter->pos.x*xScale,iter->pos.y*yScale+i,colors[std::max<int>(6-(i*rand()%2),3)]);
+			putpixel(m_subScreen,iter->pos.x*xScale+iter->xMove*i,iter->pos.y*yScale+iter->yMove*(i/2),colors[std::max<int>(8-(i*rand()%4),4)]);
 		}
 	}
 };

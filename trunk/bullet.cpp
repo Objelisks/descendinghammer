@@ -22,7 +22,7 @@ Bullet::Bullet(Coordinate co, int dmg, int t, double dir, int speed)
 void Bullet::update()
 {
 	
-	if(pos.y < 5*trail)
+	if(pos.y < -5*trail)
 	{
 		dead = true;
 	}
