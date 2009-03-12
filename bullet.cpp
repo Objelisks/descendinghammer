@@ -8,12 +8,13 @@ Bullet::Bullet() {
 	dead = false;
 };
 
-Bullet::Bullet(Coordinate co, int dmg, int t, double dir, int speed)
+Bullet::Bullet(Coordinate co, int dmg, int t, double dir, int s)
 {
 	pos = co;
 	damage = dmg;
 	trail = t;
 	direction = dir;
+	speed = s;
 	xMove = cos(rad(direction))*speed;
 	yMove = sin(rad(direction))*speed;
 	dead = false;

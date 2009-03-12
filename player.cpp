@@ -46,7 +46,8 @@ void Player::fire()
 		firePos.x += -5+rand()%10;
 		firePos.y -= 10;
 
-		Bullet newBullet = Bullet(firePos,1,5,-rand()%10+95,2);
+		//Bullet newBullet = Bullet(firePos,1,5,-rand()%10+95,2);
+		Bullet newBullet = Bullet(firePos,1,5,-rand()%180+180,2);
 		theState()->spawnBullet(newBullet);
 
 		cooldown += 8 + rand()%4;

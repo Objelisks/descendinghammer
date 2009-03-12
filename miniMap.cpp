@@ -33,19 +33,21 @@ MiniMap::MiniMap(BITMAP* parentScreen,int w, int h)
 void MiniMap::draw()
 {
 	clear_bitmap(m_subScreen);
-	rect(m_subScreen,0,0,width-1,height-1,colors[2+rand()%2]);
 	//scanlines
 	int col = colors[rand()%3];
 	for(int i=1; i<height-2; i+=2)
 	{
 		hline(m_subScreen,1,i,width-2,col);
 	}
+
 	circle(m_subScreen,theState()->player.pos.x*xScale,theState()->player.pos.y*yScale,5,colors[3]);
 	for(std::list<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end(); iter++)
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
-			putpixel(m_subScreen,iter->pos.x*xScale+iter->xMove*i,iter->pos.y*yScale+iter->yMove*(i/2),colors[std::max<int>(8-(i*rand()%4),4)]);
+			putpixel(m_subScreen,iter->pos.x*xScale+iter->xMove*i/iter->speed,iter->pos.y*yScale+iter->yMove*i/iter->speed,colors[std::max<int>(8-(i*rand()%4),4)]);
 		}
 	}
+
+	rect(m_subScreen,0,0,width-1,height-1,colors[2+rand()%2]);
 };
