@@ -60,10 +60,9 @@ void GameState::spawnEnemy()
 	//enemies.insert(Enemy());
 };
 
-void GameState::spawnBullet(Coordinate co, int dmg, int trail)
+void GameState::spawnBullet(Bullet b)
 {
-	Bullet newBullet = Bullet(co,dmg,trail);
-	bullets.insert(bullets.begin(),newBullet);
+	bullets.insert(bullets.begin(),b);
 };
 
 GameState* theState()

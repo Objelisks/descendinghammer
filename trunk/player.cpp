@@ -13,28 +13,28 @@ Player::Player() : Ship()
 void Player::moveUp(int amt)
 {
 	if(pos.y > 0){
-		pos.setY(pos.y - 1);
+		pos.y = pos.y - 1;
 	}
 };
 
 void Player::moveDown(int amt)
 {
 	if(pos.y < SCREEN_H){
-		pos.setY(pos.y + 1);
+		pos.y = pos.y + 1;
 	}
 };
 
 void Player::moveLeft(int amt)
 {
 	if(pos.x > 0){
-		pos.setX(pos.x - 1);
+		pos.x = pos.x - 1;
 	}
 };
 
 void Player::moveRight(int amt)
 {
 	if(pos.x < SCREEN_W){
-		pos.setX(pos.x + 1);
+		pos.x = pos.x + 1;
 	}
 };
 
@@ -45,7 +45,10 @@ void Player::fire()
 		Coordinate firePos = pos;
 		firePos.x += -5+rand()%10;
 		firePos.y -= 10;
-		theState()->spawnBullet(firePos,1,5);
-		cooldown = 8 + rand()%4;
+
+		Bullet newBullet = Bullet(firePos,1,5,-rand()%10+95,2);
+		theState()->spawnBullet(newBullet);
+
+		cooldown += 8 + rand()%4;
 	}
 };
