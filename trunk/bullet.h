@@ -9,6 +9,7 @@ public:
 	Coordinate pos;
 	int damage;
 	int trail;
+	int speed;
 	double direction;
 	double xMove;
 	double yMove;
