@@ -10,11 +10,10 @@ public:
 	int damage;
 	int trail;
 	double direction;
-	bool dead;
-	void update();
-private:
 	double xMove;
 	double yMove;
+	bool dead;
+	void update();
 };
 
 #endif
