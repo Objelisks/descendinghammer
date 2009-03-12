@@ -26,7 +26,7 @@ public:
 	//std::map<std::string,int> game_keys;
 	void updateWorld();
 	void spawnEnemy();
-	void spawnBullet(Coordinate co, int dmg, int trail);
+	void spawnBullet(Bullet b);
 protected:
 	GameState();
 	GameState(const GameState&);
