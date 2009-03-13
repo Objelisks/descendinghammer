@@ -23,9 +23,8 @@ public:
 	std::list<Bullet> bullets;
 	Screen* currentScreen;
 	Player player;
-	//std::map<std::string,int> game_keys;
 	void updateWorld();
-	void spawnEnemy();
+	void spawnEnemy(Enemy e);
 	void spawnBullet(Bullet b);
 protected:
 	GameState();

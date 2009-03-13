@@ -26,17 +26,15 @@ GameState::GameState()
 void GameState::Initialize()
 {
 	currentScreen = new MainScreen();
-	/*game_keys["up"] = KEY_UP;
-	game_keys["down"] = KEY_DOWN;
-	game_keys["left"] = KEY_LEFT;
-	game_keys["right"] = KEY_RIGHT;*/
-	//enemies = std::vector<Enemy>();
-	//bullets = std::vector<Bullet>();
-	//player = Player();
 };
 
 void GameState::updateWorld()
 {
+	for(std::list<Enemy>::iterator iter = theState()->enemies.begin(); iter!= theState()->enemies.end();)
+	{
+		iter->update();
+		iter++;
+	}
 	for(std::list<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end();)
 	{
 		if(iter->dead)
@@ -55,9 +53,9 @@ void GameState::updateWorld()
 	}
 };
 
-void GameState::spawnEnemy()
+void GameState::spawnEnemy(Enemy e)
 {
-	//enemies.insert(Enemy());
+	enemies.insert(enemies.begin(),e);
 };
 
 void GameState::spawnBullet(Bullet b)

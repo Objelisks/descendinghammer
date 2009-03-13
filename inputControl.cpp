@@ -4,6 +4,7 @@
 #include "coordinate.h"
 #include "player.h"
 #include "common.h"
+#include "behaviors.h"
 
 
 void handleInput()
@@ -32,5 +33,20 @@ void handleInput()
 	if(key[KEY_X])
 	{
 		theState()->player.fire();
+	}
+	if(key[KEY_1])
+	{
+		Enemy newEnemy = Enemy(&Behaviors::Stay,&Behaviors::Straight);
+		theState()->spawnEnemy(newEnemy);
+	}
+	if(key[KEY_2])
+	{
+		Enemy newEnemy = Enemy(&Behaviors::Wave,&Behaviors::Straight);
+		theState()->spawnEnemy(newEnemy);
+	}
+	if(key[KEY_3])
+	{
+		Enemy newEnemy = Enemy(&Behaviors::Zag,&Behaviors::Straight);
+		theState()->spawnEnemy(newEnemy);
 	}
 };
