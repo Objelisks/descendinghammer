@@ -8,8 +8,12 @@
 struct Enemy{
 public:
 	Enemy();
+	Enemy(double (*xM)(int), double (*yM)(int));
 	Coordinate pos;
 	int health;
+	int life;
+	double (*xMove)(int t);
+	double (*yMove)(int t);
 	void update();
 };
 
