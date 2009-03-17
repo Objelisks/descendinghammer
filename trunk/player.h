@@ -1,10 +1,12 @@
 #ifndef _player_inc
 #define _player_inc
-#include "ship.h"
 
-class Player : public Ship {
+#include "coordinate.h"
+
+class Player{
 public:
 	Player();
+	Coordinate pos;
 	void moveLeft(int amt);
 	void moveUp(int amt);
 	void moveRight(int amt);

@@ -8,18 +8,17 @@ Enemy::Enemy()
 	health = 100;
 };
 
-Enemy::Enemy(double (*xM)(int), double (*yM)(int))
+Enemy::Enemy(void (*m)(Coordinate* ,int))
 {
-	xMove = xM;
-	yMove = yM;
+	move = m;
 	pos = Coordinate(rand()%SCREEN_W,0,0);
 	health = 100;
-	life = 0;
+	life = 1;
+	dead = false;
 };
 
 void Enemy::update()
 {
-	pos.x = pos.x + (*xMove)(life);
-	pos.y = pos.y + (*yMove)(life);
+	(*move)(&pos, life);
 	life++;
 };

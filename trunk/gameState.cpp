@@ -30,23 +30,11 @@ void GameState::Initialize()
 
 void GameState::updateWorld()
 {
-	for(std::list<Enemy>::iterator iter = theState()->enemies.begin(); iter!= theState()->enemies.end();)
-	{
-		iter->update();
-		iter++;
-	}
-	for(std::list<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end();)
-	{
-		if(iter->dead)
-		{
-			iter = bullets.erase(iter);
-		}
-		else
-		{
-			iter->update();
-			iter++;
-		}
-	}
+	enemyManager.moveAll();
+
+	bulletManager.moveAll();
+	bulletManager.collideWithShips();
+
 	if(player.cooldown > 0)
 	{
 		player.cooldown--;
@@ -55,12 +43,12 @@ void GameState::updateWorld()
 
 void GameState::spawnEnemy(Enemy e)
 {
-	enemies.insert(enemies.begin(),e);
+	enemyManager.spawnEnemy(e);
 };
 
 void GameState::spawnBullet(Bullet b)
 {
-	bullets.insert(bullets.begin(),b);
+	bulletManager.spawnBullet(b);
 };
 
 GameState* theState()

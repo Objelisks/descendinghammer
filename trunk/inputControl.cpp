@@ -36,17 +36,22 @@ void handleInput()
 	}
 	if(key[KEY_1])
 	{
-		Enemy newEnemy = Enemy(&Behaviors::Stay,&Behaviors::Straight);
+		Enemy newEnemy = Enemy(&Behaviors::Straight);
 		theState()->spawnEnemy(newEnemy);
 	}
 	if(key[KEY_2])
 	{
-		Enemy newEnemy = Enemy(&Behaviors::Wave,&Behaviors::Straight);
+		Enemy newEnemy = Enemy(&Behaviors::Wave);
 		theState()->spawnEnemy(newEnemy);
 	}
 	if(key[KEY_3])
 	{
-		Enemy newEnemy = Enemy(&Behaviors::Zag,&Behaviors::Straight);
+		Enemy newEnemy = Enemy(&Behaviors::Zag);
+		theState()->spawnEnemy(newEnemy);
+	}
+	if(key[KEY_4])
+	{
+		Enemy newEnemy = Enemy(&Behaviors::Homing);
 		theState()->spawnEnemy(newEnemy);
 	}
 };

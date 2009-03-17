@@ -46,7 +46,7 @@ void MiniMap::draw()
 	circle(m_subScreen,theState()->player.pos.x*xScale,theState()->player.pos.y*yScale,5,colors[3]);
 	
 	//Draw bullets and stuf
-	for(std::list<Bullet>::iterator iter = theState()->bullets.begin(); iter!= theState()->bullets.end(); iter++)
+	for(std::list<Bullet>::iterator iter = theState()->bulletManager.bullets.begin(); iter!= theState()->bulletManager.bullets.end(); iter++)
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
@@ -55,7 +55,7 @@ void MiniMap::draw()
 	}
 
 	//Draw bad dudes
-	for(std::list<Enemy>::iterator iter = theState()->enemies.begin(); iter!= theState()->enemies.end(); iter++)
+	for(std::list<Enemy>::iterator iter = theState()->enemyManager.enemies.begin(); iter!= theState()->enemyManager.enemies.end(); iter++)
 	{
 		circle(m_subScreen,iter->pos.x*xScale,iter->pos.y*yScale,3,colors[8]);
 	}

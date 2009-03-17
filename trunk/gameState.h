@@ -11,6 +11,8 @@
 #include "bullet.h"
 #include "player.h"
 #include "screen.h"
+#include "enemyManager.h"
+#include "bulletManager.h"
 #include "list"
 #include "string"
 #include "map"
@@ -19,8 +21,8 @@ class GameState {
 public:
 	static GameState* Instance();
 	void Initialize();
-	std::list<Enemy> enemies;
-	std::list<Bullet> bullets;
+	EnemyManager enemyManager;
+	BulletManager bulletManager;
 	Screen* currentScreen;
 	Player player;
 	void updateWorld();

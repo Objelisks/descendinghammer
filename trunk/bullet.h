@@ -2,7 +2,7 @@
 #define _bullet_inc
 #include "coordinate.h"
 
-class Bullet{
+class Bullet {
 public:
 	Bullet();
 	Bullet(Coordinate co, int dmg, int t, double dir, int speed);

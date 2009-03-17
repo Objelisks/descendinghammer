@@ -4,4 +4,5 @@
 Ship::Ship()
 {
 	pos = Coordinate();
+	sidelen = 1;
 };
