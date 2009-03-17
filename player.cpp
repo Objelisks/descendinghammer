@@ -4,7 +4,7 @@
 #include "gameState.h"
 #include "common.h"
 
-Player::Player() : Ship()
+Player::Player()
 {
 	pos = Coordinate(20,20,20);
 	cooldown = 0;

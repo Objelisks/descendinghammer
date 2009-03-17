@@ -3,22 +3,30 @@
 #include "cmath"
 #include "common.h"
 
-double Behaviors::Wave(int t)
+void Behaviors::Wave(Coordinate *c, int t)
 {
-	return cos(rad((double)t));
+	c->x = c->x + cos(rad((double)t));
+	c->y = c->y + 1;
 };
 
-double Behaviors::Zag(int t)
+void Behaviors::Zag(Coordinate *c, int t)
 {
-	return t%50<25 ? 1 : -1;
+	c->x = c->x + (t%50<25 ? 1 : -1);
+	c->y = c->y + 1;
 };
 
-double Behaviors::Stay(int t)
+void Behaviors::Stay(Coordinate *c, int t)
 {
-	return 0;
+	
 };
 
-double Behaviors::Straight(int t)
+void Behaviors::Straight(Coordinate *c, int t)
 {
-	return 1;
+	c->y = c->y + 1;
+};
+
+void Behaviors::Homing(Coordinate *c, int t)
+{
+	c->x = c->x + (theState()->player.pos.x-c->x ? 1 : -1);
+	c->y = c->y + 1;
 };

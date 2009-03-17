@@ -4,7 +4,7 @@
 #include "common.h"
 
 Bullet::Bullet() {
-	Bullet::pos = Coordinate(0,0,0);
+	pos = Coordinate(0,0,0);
 	dead = false;
 };
 

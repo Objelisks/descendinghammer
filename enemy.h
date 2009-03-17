@@ -5,15 +5,15 @@
 #define _enemy_inc
 #include "coordinate.h"
 
-struct Enemy{
+class Enemy {
 public:
 	Enemy();
-	Enemy(double (*xM)(int), double (*yM)(int));
+	Enemy(void (*m)(Coordinate*, int));
 	Coordinate pos;
 	int health;
 	int life;
-	double (*xMove)(int t);
-	double (*yMove)(int t);
+	bool dead;
+	void (*move)(Coordinate *c, int t);
 	void update();
 };
 
