@@ -112,9 +112,11 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				WholeProgramOptimization="true"
 				AdditionalIncludeDirectories="C:\Program Files (x86)\boost\boost_1_37\;"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
+				GenerateXMLDocumentationFiles="false"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>

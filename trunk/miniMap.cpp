@@ -13,7 +13,7 @@ MiniMap::MiniMap(BITMAP* parentScreen,int w, int h)
 	width = w;
 	height = h;
 	m_subScreen = create_sub_bitmap(parentScreen,175,300,width ? width : 200,height ? height : 200);
-	
+
 	//scanline colors
 	colors[0] = makecol(0,32,16);
 	colors[1] = makecol(0,48,8);
@@ -46,7 +46,7 @@ void MiniMap::draw()
 	circle(m_subScreen,theState()->player.pos.x*xScale,theState()->player.pos.y*yScale,5,colors[3]);
 	
 	//Draw bullets and stuf
-	for(std::list<Bullet>::iterator iter = theState()->bulletManager.bullets.begin(); iter!= theState()->bulletManager.bullets.end(); iter++)
+	for(std::list<Bullet>::iterator iter = theState()->bulletManager->bullets.begin(); iter!= theState()->bulletManager->bullets.end(); iter++)
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
@@ -55,7 +55,7 @@ void MiniMap::draw()
 	}
 
 	//Draw bad dudes
-	for(std::list<Enemy>::iterator iter = theState()->enemyManager.enemies.begin(); iter!= theState()->enemyManager.enemies.end(); iter++)
+	for(std::list<Enemy>::iterator iter = theState()->enemyManager->enemies.begin(); iter!= theState()->enemyManager->enemies.end(); iter++)
 	{
 		circle(m_subScreen,iter->pos.x*xScale,iter->pos.y*yScale,3,colors[8]);
 	}

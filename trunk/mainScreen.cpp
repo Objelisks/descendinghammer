@@ -15,7 +15,7 @@ MainScreen::MainScreen()
 	hud = get_rle_sprite(img);
 	destroy_bitmap(img);
 	subScreens = boost::ptr_list<SubScreen>();
-	subScreens.insert(subScreens.begin(), new FrontWindow(m_screen));
+	subScreens.insert(subScreens.begin(), new FrontWindow(m_screen,SCREEN_W,200));
 	subScreens.insert(subScreens.begin(), new MiniMap(m_screen, 250, 150));
 };
 

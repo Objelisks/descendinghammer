@@ -1,8 +1,9 @@
 #include "enemyManager.h"
+#include "list"
 
 EnemyManager::EnemyManager()
 {
-
+	enemies = std::list<Enemy>();
 };
 
 void EnemyManager::spawnEnemy(Enemy e)
