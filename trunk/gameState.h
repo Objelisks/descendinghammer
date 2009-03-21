@@ -3,14 +3,15 @@
 //enemy movement
 //bullets
 //collision?
-#ifndef _gamestate_inc
-#define _gamestate_inc
+#ifndef _gameState_inc
+#define _gameState_inc
 
 #include "allegro.h"
 #include "enemy.h"
 #include "bullet.h"
 #include "player.h"
 #include "screen.h"
+#include "world.h"
 #include "enemyManager.h"
 #include "bulletManager.h"
 #include "list"
@@ -26,6 +27,7 @@ public:
 	BulletManager* bulletManager;
 	Screen* currentScreen;
 	Player player;
+	World world;
 	void updateWorld();
 	void spawnEnemy(Enemy e);
 	void spawnBullet(Bullet b);

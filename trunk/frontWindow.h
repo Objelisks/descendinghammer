@@ -13,9 +13,9 @@ private:
 	int colors[9];
 	int width;
 	int height;
-	int fovX;
-	int fovZ;
-	int fogDist;
+	int fovX;//per side
+	int fovY;//darkness
+	int fovZ;//per side
 };
 
 #endif

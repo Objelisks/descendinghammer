@@ -29,6 +29,7 @@ void GameState::Initialize()
 	bulletManager = new BulletManager();
 	enemyManager = new EnemyManager();
 	player = Player();
+	world = World(1000,1000,1000);
 };
 
 void GameState::Destroy()

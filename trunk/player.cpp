@@ -1,6 +1,5 @@
 #include "player.h"
 #include "coordinate.h"
-#include "allegro.h"
 #include "gameState.h"
 #include "common.h"
 
@@ -19,7 +18,7 @@ void Player::moveUp(int amt)
 
 void Player::moveDown(int amt)
 {
-	if(pos.y < SCREEN_H){
+	if(pos.y < theState()->world.y){
 		pos.y = pos.y + 1;
 	}
 };
@@ -33,7 +32,7 @@ void Player::moveLeft(int amt)
 
 void Player::moveRight(int amt)
 {
-	if(pos.x < SCREEN_W){
+	if(pos.x < theState()->world.x){
 		pos.x = pos.x + 1;
 	}
 };

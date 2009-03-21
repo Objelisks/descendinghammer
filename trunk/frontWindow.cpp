@@ -1,6 +1,7 @@
 #include "frontWindow.h"
 #include "gameState.h"
 #include "allegro.h"
+#include "world.h"
 
 
 FrontWindow::FrontWindow(BITMAP* parentScreen)
@@ -27,10 +28,16 @@ FrontWindow::FrontWindow(BITMAP* parentScreen, int w, int h)
 	colors[6] = makecol(245,119,18);
 	colors[7] = makecol(255,82,21);
 	colors[8] = makecol(250,19,0);
+
+	fovX = width/2;
+	fovY = 1000;
+	fovZ = height/2;
 };
 
 void FrontWindow::draw()
 {
+	clear_bitmap(m_subScreen);
+
 	rect(m_subScreen,0,0,m_subScreen->w-1,m_subScreen->h-1,makecol(255,255,255));
 
 	//Draw bullets and stuf
@@ -45,7 +52,16 @@ void FrontWindow::draw()
 	//Draw bad dudes
 	for(std::list<Enemy>::iterator iter = theState()->enemyManager->enemies.begin(); iter!= theState()->enemyManager->enemies.end(); iter++)
 	{
-		circle(m_subScreen,iter->pos.x,iter->pos.y,3,colors[8]);
+		if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
+		{
+		if(iter->pos.x>theState()->player.pos.x-fovX && iter->pos.x<theState()->player.pos.x+fovX)
+		{
+		if(iter->pos.z>theState()->player.pos.z-fovZ && iter->pos.z<theState()->player.pos.z+fovZ)
+		{
+			circle(m_subScreen,(iter->pos.x-theState()->player.pos.x)*(SCREEN_W/fovX),(iter->pos.z-theState()->player.pos.z)*(200/fovZ),MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),50),colors[8]);
+		}
+		}
+		}
 	}
 };
 
