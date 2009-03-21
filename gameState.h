@@ -21,8 +21,9 @@ class GameState {
 public:
 	static GameState* Instance();
 	void Initialize();
-	EnemyManager enemyManager;
-	BulletManager bulletManager;
+	void Destroy();
+	EnemyManager* enemyManager;
+	BulletManager* bulletManager;
 	Screen* currentScreen;
 	Player player;
 	void updateWorld();

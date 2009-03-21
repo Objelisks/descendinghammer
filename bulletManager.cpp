@@ -1,9 +1,10 @@
 #include "bulletManager.h"
 #include "gameState.h"
+#include "list"
 
 BulletManager::BulletManager()
 {
-
+	bullets = std::list<Bullet>();
 };
 
 void BulletManager::spawnBullet(Bullet b)

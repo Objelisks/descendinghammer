@@ -6,6 +6,9 @@ Enemy::Enemy()
 {
 	pos = Coordinate(rand()%SCREEN_W,0,0);
 	health = 100;
+	move = 0;
+	life = 1;
+	dead = false;
 };
 
 Enemy::Enemy(void (*m)(Coordinate* ,int))

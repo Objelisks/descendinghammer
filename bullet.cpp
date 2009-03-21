@@ -5,6 +5,10 @@
 
 Bullet::Bullet() {
 	pos = Coordinate(0,0,0);
+	damage = 1;
+	trail = 1;
+	direction = 0;
+	speed = 1;
 	dead = false;
 };
 
