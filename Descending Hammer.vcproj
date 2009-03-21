@@ -225,6 +225,10 @@
 				RelativePath=".\player.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\world.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -293,6 +297,10 @@
 			</File>
 			<File
 				RelativePath=".\subScreen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\world.h"
 				>
 			</File>
 		</Filter>

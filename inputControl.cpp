@@ -16,19 +16,19 @@ void handleInput()
 
 	if(key[KEY_DOWN])
 	{
-		theState()->player.moveDown(15);
+		theState()->player.moveDown(50);
 	}
 	if(key[KEY_UP])
 	{
-		theState()->player.moveUp(15);
+		theState()->player.moveUp(50);
 	}
 	if(key[KEY_LEFT])
 	{
-		theState()->player.moveLeft(15);
+		theState()->player.moveLeft(50);
 	}
 	if(key[KEY_RIGHT])
 	{
-		theState()->player.moveRight(15);
+		theState()->player.moveRight(50);
 	}
 	if(key[KEY_X])
 	{

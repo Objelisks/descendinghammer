@@ -27,8 +27,8 @@ MiniMap::MiniMap(BITMAP* parentScreen,int w, int h)
 	colors[6] = makecol(245,119,18);
 	colors[7] = makecol(255,82,21);
 	colors[8] = makecol(250,19,0);
-	xScale = (float)width/(float)SCREEN_W;
-	yScale = (float)height/(float)SCREEN_H;
+	xScale = (float)width/(float)1000;
+	yScale = (float)height/(float)1000;
 };
 
 void MiniMap::draw()
