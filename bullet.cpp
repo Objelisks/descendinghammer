@@ -21,6 +21,7 @@ Bullet::Bullet(Coordinate co, int dmg, int t, double dir, int s)
 	speed = s;
 	xMove = cos(rad(direction))*speed;
 	yMove = sin(rad(direction))*speed;
+	//zMove = sin(rad(direction))*speed;
 	dead = false;
 };
 
@@ -31,6 +32,7 @@ void Bullet::update()
 	{
 		dead = true;
 	}
+	//pos.z = pos.z - zMove;
 	pos.y = pos.y - yMove;
 	pos.x = pos.x - xMove;
 };

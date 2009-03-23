@@ -5,10 +5,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Descending Hammer", "Descen
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ActualRelease|Win32 = ActualRelease|Win32
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45820485-DF16-4057-A0C3-3A36774D5EEF}.ActualRelease|Win32.ActiveCfg = ActualRelease|Win32
+		{45820485-DF16-4057-A0C3-3A36774D5EEF}.ActualRelease|Win32.Build.0 = ActualRelease|Win32
 		{45820485-DF16-4057-A0C3-3A36774D5EEF}.Debug|Win32.ActiveCfg = Debug|Win32
 		{45820485-DF16-4057-A0C3-3A36774D5EEF}.Debug|Win32.Build.0 = Debug|Win32
 		{45820485-DF16-4057-A0C3-3A36774D5EEF}.Release|Win32.ActiveCfg = Release|Win32
