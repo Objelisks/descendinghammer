@@ -7,6 +7,8 @@ class Player{
 public:
 	Player();
 	Coordinate pos;
+	void moveForward(int amt);
+	void moveBackward(int amt);
 	void moveLeft(int amt);
 	void moveUp(int amt);
 	void moveRight(int amt);

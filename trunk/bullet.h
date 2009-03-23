@@ -13,6 +13,7 @@ public:
 	double direction;
 	double xMove;
 	double yMove;
+	double zMove;
 	bool dead;
 	void update();
 };

@@ -2,7 +2,7 @@
 #include "gameState.h"
 #include "allegro.h"
 #include "world.h"
-
+#include "math.h"
 
 FrontWindow::FrontWindow(BITMAP* parentScreen)
 {
@@ -38,14 +38,12 @@ void FrontWindow::draw()
 {
 	clear_bitmap(m_subScreen);
 
-	rect(m_subScreen,0,0,m_subScreen->w-1,m_subScreen->h-1,makecol(255,255,255));
-
 	//Draw bullets and stuf
 	for(std::list<Bullet>::iterator iter = theState()->bulletManager->bullets.begin(); iter!= theState()->bulletManager->bullets.end(); iter++)
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
-			putpixel(m_subScreen,iter->pos.x+iter->xMove*i/iter->speed,iter->pos.y+iter->yMove*i/iter->speed,colors[std::max<int>(8-(i*rand()%5),4)]);
+			putpixel(m_subScreen,(iter->pos.x-theState()->player.pos.x+fovX/2)*(SCREEN_W/fovX),(iter->pos.z-theState()->player.pos.z+fovZ/2)*(200/fovZ),colors[std::max<int>(8-(i*rand()%5),4)]);
 		}
 	}
 
@@ -54,14 +52,19 @@ void FrontWindow::draw()
 	{
 		if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
 		{
-		if(iter->pos.x>theState()->player.pos.x-fovX && iter->pos.x<theState()->player.pos.x+fovX)
-		{
-		if(iter->pos.z>theState()->player.pos.z-fovZ && iter->pos.z<theState()->player.pos.z+fovZ)
-		{
-			circle(m_subScreen,(iter->pos.x-theState()->player.pos.x)*(SCREEN_W/fovX),(iter->pos.z-theState()->player.pos.z)*(200/fovZ),MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),50),colors[8]);
-		}
-		}
+		//if(iter->pos.x>theState()->player.pos.x-fovX && iter->pos.x<theState()->player.pos.x+fovX)
+		//{
+		//if(iter->pos.z>theState()->player.pos.z-fovZ && iter->pos.z<theState()->player.pos.z+fovZ)
+		//{
+			int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
+			int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
+			int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),50);
+			circle(m_subScreen,x,y,s,colors[8]);
+		//}
+		//}
 		}
 	}
+
+	rect(m_subScreen,0,0,m_subScreen->w-1,m_subScreen->h-1,makecol(255,255,255));
 };
 

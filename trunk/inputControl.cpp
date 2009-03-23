@@ -22,6 +22,14 @@ void handleInput()
 	{
 		theState()->player.moveUp(50);
 	}
+	if(key[KEY_S])
+	{
+		theState()->player.moveBackward(50);
+	}
+	if(key[KEY_W])
+	{
+		theState()->player.moveForward(50);
+	}
 	if(key[KEY_LEFT])
 	{
 		theState()->player.moveLeft(50);
