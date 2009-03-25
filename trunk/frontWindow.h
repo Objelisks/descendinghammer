@@ -2,6 +2,9 @@
 #define _frontWindow_inc
 
 #include "subScreen.h"
+#include "common.h"
+#include "queue"
+#include "functional"
 
 class FrontWindow : public SubScreen
 {
@@ -16,6 +19,7 @@ private:
 	int fovX;//per side
 	int fovY;//darkness
 	int fovZ;//per side
+	std::priority_queue<DrawableWrapper,std::vector<DrawableWrapper>,DrawableComp> drawOrder;
 };
 
 #endif

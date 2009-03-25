@@ -11,6 +11,7 @@ void Zag(Coordinate *c, int t);
 void Stay(Coordinate *c, int t);
 void Straight(Coordinate *c, int t);
 void Homing(Coordinate *c, int t);
+void Bullet(Coordinate *c, int t);
 
 }
 

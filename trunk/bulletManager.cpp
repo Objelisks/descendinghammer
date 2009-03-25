@@ -27,8 +27,3 @@ void BulletManager::moveAll()
 		}
 	}
 };
-
-void BulletManager::collideWithShips()
-{
-
-};

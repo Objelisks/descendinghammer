@@ -12,6 +12,7 @@ public:
 
 	void spawnEnemy(Enemy e);
 	void moveAll();
+	void collideEnemyWithBullets(Enemy e);
 };
 
 #endif

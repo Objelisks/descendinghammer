@@ -22,3 +22,13 @@ double deg(double rad)
 {
 	return rad*180.0/PI;
 };
+
+DrawableWrapper::DrawableWrapper(int _x, int _y, int _z, int _s, bool _fill, int _color)
+{
+	x=_x;
+	y=_y;
+	z=_z;
+	s=_s;
+	fill=_fill;
+	color=_color;
+};

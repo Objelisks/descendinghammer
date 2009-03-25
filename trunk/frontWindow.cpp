@@ -1,8 +1,10 @@
 #include "frontWindow.h"
 #include "gameState.h"
+#include "common.h"
 #include "allegro.h"
 #include "world.h"
 #include "math.h"
+#include "queue"
 
 FrontWindow::FrontWindow(BITMAP* parentScreen)
 {
@@ -32,6 +34,8 @@ FrontWindow::FrontWindow(BITMAP* parentScreen, int w, int h)
 	fovX = width/2;
 	fovY = 1000;
 	fovZ = height/2;
+
+	drawOrder = std::priority_queue<DrawableWrapper,std::vector<DrawableWrapper>,DrawableComp>();
 };
 
 void FrontWindow::draw()
@@ -43,7 +47,14 @@ void FrontWindow::draw()
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
-			putpixel(m_subScreen,(iter->pos.x-theState()->player.pos.x+fovX/2)*(SCREEN_W/fovX),(iter->pos.z-theState()->player.pos.z+fovZ/2)*(200/fovZ),colors[std::max<int>(8-(i*rand()%5),4)]);
+			if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
+			{
+				int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
+				int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
+				int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),8);
+				int c = colors[std::max<int>(8-s/4,4)];
+				drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,true,c));
+			}
 		}
 	}
 
@@ -52,19 +63,36 @@ void FrontWindow::draw()
 	{
 		if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
 		{
-		//if(iter->pos.x>theState()->player.pos.x-fovX && iter->pos.x<theState()->player.pos.x+fovX)
-		//{
-		//if(iter->pos.z>theState()->player.pos.z-fovZ && iter->pos.z<theState()->player.pos.z+fovZ)
-		//{
+			//if(iter->pos.x>theState()->player.pos.x-fovX && iter->pos.x<theState()->player.pos.x+fovX)
+			//{
+			//if(iter->pos.z>theState()->player.pos.z-fovZ && iter->pos.z<theState()->player.pos.z+fovZ)
+			//{
 			int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
 			int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
-			int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),50);
-			circle(m_subScreen,x,y,s,colors[8]);
-		//}
-		//}
+			int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),60);
+			
+			drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,false,colors[8]));
+			//}
+			//}
 		}
 	}
 
+	while(!drawOrder.empty())
+	{
+		DrawableWrapper toDraw = drawOrder.top();
+		if(toDraw.fill)
+		{
+			circlefill(m_subScreen,toDraw.x,toDraw.y,toDraw.s,toDraw.color);
+		}
+		else
+		{
+			circle(m_subScreen,toDraw.x,toDraw.y,toDraw.s,toDraw.color);
+		}
+		drawOrder.pop();
+	}
+
+	hline(m_subScreen,width/2-2,height/2,width/2+2,makecol(255,255,255));
+	vline(m_subScreen,width/2,height/2-2,height/2+2,makecol(255,255,255));
 	rect(m_subScreen,0,0,m_subScreen->w-1,m_subScreen->h-1,makecol(255,255,255));
 };
 

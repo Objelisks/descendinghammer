@@ -50,14 +50,14 @@ void MiniMap::draw()
 	{
 		for(int i=0; i<iter->trail; i++)
 		{
-			putpixel(m_subScreen,iter->pos.x*xScale+iter->xMove*i/iter->speed,iter->pos.y*yScale+iter->yMove*i/iter->speed,colors[std::max<int>(8-(i*rand()%5),4)]);
+			putpixel(m_subScreen,iter->pos.x*xScale,iter->pos.y*yScale,colors[std::max<int>(8-(i*rand()%5),4)]);
 		}
 	}
 
 	//Draw bad dudes
 	for(std::list<Enemy>::iterator iter = theState()->enemyManager->enemies.begin(); iter!= theState()->enemyManager->enemies.end(); iter++)
 	{
-		circle(m_subScreen,iter->pos.x*xScale,iter->pos.y*yScale,3,colors[8]);
+		circle(m_subScreen,iter->pos.x*xScale,iter->pos.y*yScale,iter->size,colors[8]);
 	}
 
 	rect(m_subScreen,0,0,width-1,height-1,colors[2+rand()%2]);

@@ -31,12 +31,14 @@ public:
 	void updateWorld();
 	void spawnEnemy(Enemy e);
 	void spawnBullet(Bullet b);
+	int collideEnemyWithBullets(Enemy e);
 protected:
 	GameState();
 	GameState(const GameState&);
 	GameState& operator= (const GameState&);
 private:
 	static GameState* instance;
+	bool collide(Coordinate pos1, Coordinate pos2, int size);
 };
 
 GameState* theState();

@@ -7,6 +7,7 @@ Enemy::Enemy()
 	pos = Coordinate(rand()%theState()->world.x,0,rand()%theState()->world.z);
 	health = 100;
 	move = 0;
+	size = 3;
 	life = 1;
 	dead = false;
 };
@@ -14,8 +15,9 @@ Enemy::Enemy()
 Enemy::Enemy(void (*m)(Coordinate* ,int))
 {
 	move = m;
-	pos = Coordinate(rand()%theState()->world.x,0,rand()%200);
+	pos = Coordinate(rand()%theState()->world.x,0,0);//rand()%200);
 	health = 100;
+	size = 3;
 	life = 1;
 	dead = false;
 };
@@ -23,8 +25,13 @@ Enemy::Enemy(void (*m)(Coordinate* ,int))
 void Enemy::update()
 {
 	(*move)(&pos, life);
+
+	int dmg = theState()->collideEnemyWithBullets(*this);
+
+	health = health - dmg;
+
 	life++;
-	if(pos.y > theState()->world.y)
+	if(pos.y > theState()->world.y || health <= 0)
 	{
 		dead = true;
 	}

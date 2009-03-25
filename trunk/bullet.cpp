@@ -7,32 +7,27 @@ Bullet::Bullet() {
 	pos = Coordinate(0,0,0);
 	damage = 1;
 	trail = 1;
-	direction = 0;
 	speed = 1;
 	dead = false;
 };
 
-Bullet::Bullet(Coordinate co, int dmg, int t, double dir, int s)
+Bullet::Bullet(Coordinate co, int dmg, int t, int s, void (*m)(Coordinate* ,int))
 {
 	pos = co;
 	damage = dmg;
 	trail = t;
-	direction = dir;
 	speed = s;
-	xMove = cos(rad(direction))*speed;
-	yMove = sin(rad(direction))*speed;
-	//zMove = sin(rad(direction))*speed;
+	move = m;
+	life = 1;
 	dead = false;
 };
 
 void Bullet::update()
 {
-	
-	if(pos.y < -5*trail)
+	(*move)(&pos, life);
+	life++;
+	if(pos.y < -5)
 	{
 		dead = true;
 	}
-	//pos.z = pos.z - zMove;
-	pos.y = pos.y - yMove;
-	pos.x = pos.x - xMove;
 };
