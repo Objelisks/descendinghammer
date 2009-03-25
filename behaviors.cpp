@@ -30,3 +30,8 @@ void Behaviors::Homing(Coordinate *c, int t)
 	c->x = c->x + (theState()->player.pos.x-c->x ? 1 : -1);
 	c->y = c->y + 1;
 };
+
+void Behaviors::Bullet(Coordinate *c, int t)
+{
+	c->y = c->y - 1;
+};

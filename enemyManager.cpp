@@ -25,4 +25,4 @@ void EnemyManager::moveAll()
 			iter++;
 		}
 	}
-}
+};

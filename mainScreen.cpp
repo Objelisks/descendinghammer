@@ -30,7 +30,10 @@ void MainScreen::drawSubScreens()
 
 void MainScreen::draw(){
 	drawSubScreens();
+	rectfill(m_screen,0,0,100,50,makecol(0,0,0));
 	textout_ex(m_screen,font,toString(frameRate).c_str(),5,5,makecol(255,255,255),0);
+	textout_ex(m_screen,font,toString(theState()->bulletManager->bullets.size()).c_str(),25,5,makecol(255,255,255),0);
+	textout_ex(m_screen,font,toString(theState()->enemyManager->enemies.size()).c_str(),50,5,makecol(255,255,255),0);
 	textout_ex(m_screen,font,((toString(theState()->player.pos.x).append(", "+toString(theState()->player.pos.y))).append(", "+toString(theState()->player.pos.z))).c_str(),5,25,makecol(255,255,255),0);
 	draw_rle_sprite(m_screen,hud,0,0);
 	blit(m_screen,screen,0,0,0,0,m_screen->w,m_screen->h);

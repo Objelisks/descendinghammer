@@ -5,15 +5,13 @@
 class Bullet {
 public:
 	Bullet();
-	Bullet(Coordinate co, int dmg, int t, double dir, int speed);
+	Bullet(Coordinate co, int dmg, int t, int speed, void (*m)(Coordinate* ,int));
 	Coordinate pos;
 	int damage;
 	int trail;
 	int speed;
-	double direction;
-	double xMove;
-	double yMove;
-	double zMove;
+	int life;
+	void (*move)(Coordinate* ,int);
 	bool dead;
 	void update();
 };

@@ -12,7 +12,6 @@ public:
 
 	void spawnBullet(Bullet b);
 	void moveAll();
-	void collideWithShips();
 };
 
 #endif

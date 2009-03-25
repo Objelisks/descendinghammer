@@ -11,6 +11,7 @@ public:
 	Enemy(void (*m)(Coordinate*, int));
 	Coordinate pos;
 	int health;
+	int size;
 	int life;
 	bool dead;
 	void (*move)(Coordinate *c, int t);

@@ -11,4 +11,6 @@ public:
 	double z;
 };
 
+float distance(Coordinate p1, Coordinate p2);
+
 #endif
