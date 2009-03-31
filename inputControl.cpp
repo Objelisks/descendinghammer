@@ -6,6 +6,7 @@
 #include "common.h"
 #include "behaviors.h"
 
+bool keyDownLSHIFT;
 
 void handleInput()
 {
@@ -16,27 +17,42 @@ void handleInput()
 
 	if(key[KEY_DOWN])
 	{
-		theState()->player.moveDown(50);
+		if(theState()->player.inversethrustvectoringfuelcoiltoggled)
+		{
+			theState()->player.moveBackward();
+		}
+		else
+		{
+			theState()->player.moveDown();
+		}
 	}
 	if(key[KEY_UP])
 	{
-		theState()->player.moveUp(50);
+		if(theState()->player.inversethrustvectoringfuelcoiltoggled)
+		{
+			theState()->player.moveForward();
+		}
+		else
+		{
+			theState()->player.moveUp();
+		}
 	}
-	if(key[KEY_S])
+	if(!keyDownLSHIFT && key[KEY_LSHIFT])
 	{
-		theState()->player.moveBackward(50);
+		theState()->player.toggleThrustVectors();
+		keyDownLSHIFT = true;
 	}
-	if(key[KEY_W])
+	if(!key[KEY_LSHIFT])
 	{
-		theState()->player.moveForward(50);
+		keyDownLSHIFT = false;
 	}
 	if(key[KEY_LEFT])
 	{
-		theState()->player.moveLeft(50);
+		theState()->player.moveLeft();
 	}
 	if(key[KEY_RIGHT])
 	{
-		theState()->player.moveRight(50);
+		theState()->player.moveRight();
 	}
 	if(key[KEY_X])
 	{

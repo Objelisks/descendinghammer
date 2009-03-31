@@ -257,6 +257,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\button.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\common.cpp"
 				>
 			</File>
@@ -278,6 +282,10 @@
 			</File>
 			<File
 				RelativePath=".\gameState.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\indicator.cpp"
 				>
 			</File>
 			<File
@@ -305,6 +313,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resources.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\txtScreen.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\weapon.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\world.cpp"
 				>
 			</File>
@@ -324,6 +344,10 @@
 			</File>
 			<File
 				RelativePath=".\bulletManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\button.h"
 				>
 			</File>
 			<File
@@ -375,11 +399,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resources.h"
+				>
+			</File>
+			<File
 				RelativePath=".\screen.h"
 				>
 			</File>
 			<File
 				RelativePath=".\subScreen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\txtScreen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\weapon.h"
 				>
 			</File>
 			<File
@@ -392,18 +428,6 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-			<File
-				RelativePath=".\Images\hud.bmp"
-				>
-				<FileConfiguration
-					Name="ActualRelease|Win32"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						Outputs="/Images/hud.bmp"
-					/>
-				</FileConfiguration>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>

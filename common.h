@@ -2,10 +2,20 @@
 #define _common_inc
 
 #include "string"
+#include "sstream"
+#include "allegro.h"
 
 #define PI 3.14159265
 
-std::string toString(int i);
+template <class T>
+std::string toString(T i)
+{
+	std::string s;
+	std::stringstream out;
+	out << i;
+	s = out.str();
+	return s;
+};
 extern volatile int frameRate;
 double rad(double deg);
 double deg(double rad);
@@ -13,13 +23,13 @@ double deg(double rad);
 struct DrawableWrapper
 {
 public:
-	DrawableWrapper(int x, int y, int z, int s, bool fill, int color);
+	DrawableWrapper(int x, int y, int z, double s, BITMAP* img, int color);
 	int x;
 	int y;
 	int z;
-	int s;
-	bool fill;
+	double s;
 	int color;
+	BITMAP* image;
 };
 
 class DrawableComp

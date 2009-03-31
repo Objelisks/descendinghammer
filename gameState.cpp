@@ -6,6 +6,10 @@
 #include "coordinate.h"
 #include "screen.h"
 #include "allegro.h"
+#include "common.h"
+#include "boost/random/linear_congruential.hpp"
+
+#include "txtScreen.h"
 
 GameState* GameState::instance = 0;
 
@@ -20,7 +24,6 @@ GameState* GameState::Instance()
 
 GameState::GameState()
 {
-	Initialize();
 };
 
 void GameState::Initialize()
@@ -28,8 +31,10 @@ void GameState::Initialize()
 	currentScreen = new MainScreen();
 	bulletManager = new BulletManager();
 	enemyManager = new EnemyManager();
-	player = Player();
-	world = World(1000,1000,1000);
+	world = World(200,800,200);
+	score = 0;
+	humans = 4294967294; //initial attack wiped out most of them
+	humansToKill = 0;
 };
 
 void GameState::Destroy()
@@ -37,16 +42,18 @@ void GameState::Destroy()
 	delete currentScreen;
 	delete bulletManager;
 	delete enemyManager;
+	delete txtScreen;
+	resources.destroy();
 };
 
 void GameState::updateWorld()
 {
-	//theState()->enemyManager->moveAll();
-	for(std::list<Enemy>::iterator iter = theState()->enemyManager->enemies.begin(); iter!= theState()->enemyManager->enemies.end();)
+	//enemyManager->moveAll();
+	for(std::list<Enemy>::iterator iter = enemyManager->enemies.begin(); iter!= enemyManager->enemies.end();)
 	{
 		if(iter->dead)
 		{
-			iter = theState()->enemyManager->enemies.erase(iter);
+			iter = enemyManager->enemies.erase(iter);
 		}
 		else
 		{
@@ -55,12 +62,23 @@ void GameState::updateWorld()
 		}
 	}
 
+	bulletManager->moveAll();
 
-	theState()->bulletManager->moveAll();
+	player.update();
 
-	if(player.cooldown > 0)
+	if(humansToKill > 0)
 	{
-		player.cooldown--;
+
+		int kill = (((unsigned int)rand())*32)%(humansToKill+1);
+		humans-=kill;
+		humansToKill-=kill;
+	}
+
+	textTimer++;
+	if(textTimer > 20)
+	{
+		txtScreen->addText("Score: " + toString(score));
+		textTimer = 0;
 	}
 };
 
@@ -83,7 +101,7 @@ int GameState::collideEnemyWithBullets(Enemy e)
 		{
 			dmg = dmg + iter->damage;
 			iter = theState()->bulletManager->bullets.erase(iter);
-
+			score++;
 		}
 		else
 		{

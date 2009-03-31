@@ -17,6 +17,7 @@ public:
 private:
 	void drawSubScreens();
 	RLE_SPRITE* hud;
+	bool init;
 };
 
 #endif
