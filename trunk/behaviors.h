@@ -6,12 +6,11 @@
 namespace Behaviors
 {
 
-void Wave(Coordinate *c, int t);
-void Zag(Coordinate *c, int t);
-void Stay(Coordinate *c, int t);
-void Straight(Coordinate *c, int t);
-void Homing(Coordinate *c, int t);
-void Bullet(Coordinate *c, int t);
+void Wave(Coordinate *c, int t, double speed);
+void Zag(Coordinate *c, int t, double speed);
+void Stay(Coordinate *c, int t, double speed);
+void Straight(Coordinate *c, int t, double speed);
+void Homing(Coordinate *c, int t, double speed);
 
 }
 

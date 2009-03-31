@@ -47,6 +47,7 @@ void logic()
 	mainKeyCheck();
 	gameKeyCheck();
 	theState()->updateWorld();
+	//theState()->currentLevel->spawnEnemies();
 
 	//menus
 
@@ -86,6 +87,8 @@ int main(void)
 		LOCK_FUNCTION(getFrameRate);
 		install_int_ex(incSpeedCounter, BPS_TO_TIMER(60));
 		install_int_ex(getFrameRate, BPS_TO_TIMER(1));
+
+		theState()->Initialize();
 
 		bool needRedraw = false;
 		while(!GAME_ENDED)

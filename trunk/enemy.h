@@ -4,17 +4,20 @@
 #ifndef _enemy_inc
 #define _enemy_inc
 #include "coordinate.h"
+#include "allegro.h"
 
 class Enemy {
 public:
 	Enemy();
-	Enemy(void (*m)(Coordinate*, int));
+	Enemy(void (*m)(Coordinate*, int, double));
 	Coordinate pos;
 	int health;
 	int size;
 	int life;
+	double speed;
 	bool dead;
-	void (*move)(Coordinate *c, int t);
+	BITMAP* image;
+	void (*move)(Coordinate *c, int t, double);
 	void update();
 };
 

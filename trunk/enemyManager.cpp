@@ -1,5 +1,6 @@
 #include "enemyManager.h"
 #include "list"
+#include "gameState.h"
 
 EnemyManager::EnemyManager()
 {

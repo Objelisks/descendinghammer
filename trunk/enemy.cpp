@@ -1,30 +1,35 @@
 #include "enemy.h"
 #include "coordinate.h"
 #include "gameState.h"
+#include "common.h"
 
 Enemy::Enemy()
 {
 	pos = Coordinate(rand()%theState()->world.x,0,rand()%theState()->world.z);
 	health = 100;
 	move = 0;
-	size = 3;
 	life = 1;
+	speed = 1;
+	image = theState()->resources.images["ship"+toString(rand()%3+1)+".bmp"];
+	size = image->w/10;
 	dead = false;
 };
 
-Enemy::Enemy(void (*m)(Coordinate* ,int))
+Enemy::Enemy(void (*m)(Coordinate* ,int, double))
 {
 	move = m;
-	pos = Coordinate(rand()%theState()->world.x,0,0);//rand()%200);
+	pos = Coordinate(rand()%theState()->world.x,0,rand()%theState()->world.z);
 	health = 100;
-	size = 3;
 	life = 1;
+	speed = 1;
+	image = theState()->resources.images["ship"+toString(rand()%3+1)+".bmp"];
+	size = image->w/10;
 	dead = false;
 };
 
 void Enemy::update()
 {
-	(*move)(&pos, life);
+	(*move)(&pos, life, speed);
 
 	int dmg = theState()->collideEnemyWithBullets(*this);
 
@@ -33,6 +38,10 @@ void Enemy::update()
 	life++;
 	if(pos.y > theState()->world.y || health <= 0)
 	{
+		if(pos.y > theState()->world.y && theState()->humansToKill < 4294967294)
+		{
+			theState()->humansToKill+=100000;
+		}
 		dead = true;
 	}
 };

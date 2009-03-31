@@ -14,9 +14,9 @@
 #include "world.h"
 #include "enemyManager.h"
 #include "bulletManager.h"
-#include "list"
-#include "string"
-#include "map"
+#include "vector"
+#include "resources.h"
+#include "txtScreen.h"
 
 class GameState {
 public:
@@ -28,10 +28,15 @@ public:
 	Screen* currentScreen;
 	Player player;
 	World world;
+	Resources resources;
+	int score;
+	unsigned int humans;
+	unsigned int humansToKill;
 	void updateWorld();
 	void spawnEnemy(Enemy e);
 	void spawnBullet(Bullet b);
 	int collideEnemyWithBullets(Enemy e);
+	TextScreen* txtScreen;
 protected:
 	GameState();
 	GameState(const GameState&);
@@ -39,6 +44,7 @@ protected:
 private:
 	static GameState* instance;
 	bool collide(Coordinate pos1, Coordinate pos2, int size);
+	int textTimer;
 };
 
 GameState* theState();

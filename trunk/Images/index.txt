@@ -1,0 +1,8 @@
+hud.bmp
+ship1.bmp
+ship2.bmp
+ship3.bmp
+meter.bmp
+light.bmp
+button.bmp
+bullet.bmp

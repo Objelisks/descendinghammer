@@ -32,7 +32,7 @@ FrontWindow::FrontWindow(BITMAP* parentScreen, int w, int h)
 	colors[8] = makecol(250,19,0);
 
 	fovX = width/2;
-	fovY = 1000;
+	fovY = 800;
 	fovZ = height/2;
 
 	drawOrder = std::priority_queue<DrawableWrapper,std::vector<DrawableWrapper>,DrawableComp>();
@@ -49,11 +49,24 @@ void FrontWindow::draw()
 		{
 			if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
 			{
+
+				double s = (iter->pos.y-theState()->player.pos.y+fovY)/fovY;
+
 				int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
 				int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
-				int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),8);
+				
+				int c = colors[std::max<int>(8-s*4,4)];
+				drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,iter->image,c));
+				
+				/*
+				int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
+				int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
+				int s = (fovY)/(theState()->player.pos.y-iter->pos.y);
+				//int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),8);
 				int c = colors[std::max<int>(8-s/4,4)];
+				
 				drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,true,c));
+				*/
 			}
 		}
 	}
@@ -63,30 +76,33 @@ void FrontWindow::draw()
 	{
 		if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
 		{
-			//if(iter->pos.x>theState()->player.pos.x-fovX && iter->pos.x<theState()->player.pos.x+fovX)
-			//{
-			//if(iter->pos.z>theState()->player.pos.z-fovZ && iter->pos.z<theState()->player.pos.z+fovZ)
-			//{
+
+			//double s = MIN(MAX((int)(fovY*5/(theState()->player.pos.y-iter->pos.y)),1),60);
+			double s = (iter->pos.y-theState()->player.pos.y+fovY)/fovY;
+
+			//int x = fovX/2+((fovX/(theState()->player.pos.x-iter->pos.x+fovX))*(fovX/2));
+			//int y = fovZ/2+((fovZ/(theState()->player.pos.z-iter->pos.z+fovZ))*(fovZ/2));
 			int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
 			int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
-			int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),60);
-			
-			drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,false,colors[8]));
-			//}
-			//}
+			drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,iter->image,-1));
 		}
 	}
 
 	while(!drawOrder.empty())
 	{
 		DrawableWrapper toDraw = drawOrder.top();
-		if(toDraw.fill)
+		if(toDraw.color == -1)
 		{
-			circlefill(m_subScreen,toDraw.x,toDraw.y,toDraw.s,toDraw.color);
+			stretch_sprite(m_subScreen,toDraw.image,toDraw.x,toDraw.y,toDraw.image->w*toDraw.s,toDraw.image->h*toDraw.s);
 		}
 		else
 		{
-			circle(m_subScreen,toDraw.x,toDraw.y,toDraw.s,toDraw.color);
+			BITMAP* temp = create_bitmap(toDraw.image->w*toDraw.s,toDraw.image->h*toDraw.s);
+			clear_to_color(temp,bitmap_mask_color(temp));
+			stretch_sprite(temp,toDraw.image,0,0,toDraw.image->w*toDraw.s,toDraw.image->h*toDraw.s);
+			set_multiply_blender(getr(toDraw.color),getg(toDraw.color),getb(toDraw.color),255);
+			draw_lit_sprite(m_subScreen,temp,toDraw.x,toDraw.y,255);
+			destroy_bitmap(temp);
 		}
 		drawOrder.pop();
 	}

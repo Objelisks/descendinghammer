@@ -3,35 +3,30 @@
 #include "cmath"
 #include "common.h"
 
-void Behaviors::Wave(Coordinate *c, int t)
+void Behaviors::Wave(Coordinate *c, int t, double speed)
 {
-	c->x = c->x + cos(rad((double)t));
-	c->y = c->y + 1;
+	c->x = c->x + cos(rad((double)t))*speed;
+	c->y = c->y + speed;
 };
 
-void Behaviors::Zag(Coordinate *c, int t)
+void Behaviors::Zag(Coordinate *c, int t, double speed)
 {
-	c->x = c->x + (t%50<25 ? 1 : -1);
-	c->y = c->y + 1;
+	c->x = c->x + (t%50<25 ? 1 : -1)*speed;
+	c->y = c->y + speed;
 };
 
-void Behaviors::Stay(Coordinate *c, int t)
+void Behaviors::Stay(Coordinate *c, int t, double speed)
 {
 	
 };
 
-void Behaviors::Straight(Coordinate *c, int t)
+void Behaviors::Straight(Coordinate *c, int t, double speed)
 {
-	c->y = c->y + 1;
+	c->y = c->y + speed;
 };
 
-void Behaviors::Homing(Coordinate *c, int t)
+void Behaviors::Homing(Coordinate *c, int t, double speed)
 {
-	c->x = c->x + (theState()->player.pos.x-c->x ? 1 : -1);
-	c->y = c->y + 1;
-};
-
-void Behaviors::Bullet(Coordinate *c, int t)
-{
-	c->y = c->y - 1;
+	c->x = c->x + (theState()->player.pos.x-c->x ? 1 : -1)*speed;
+	c->y = c->y + speed;
 };
