@@ -2,15 +2,23 @@
 #include "coordinate.h"
 #include "gameState.h"
 #include "common.h"
+#include "weapon.h"
 #include "behaviors.h"
+#include "vector"
+#include "boost/ptr_container/ptr_vector.hpp"
 
 Player::Player()
 {
 	pos = Coordinate(100,750,0);
-	cooldown = 0;
 	speed = 0.5;
 	intSpeed = 1;
+	direction = 90;
 	inversethrustvectoringfuelcoiltoggled = 0;
+	currentWeapon = 0;
+	weapons = boost::ptr_vector<Weapon>();
+	weapons.insert(weapons.end(), new MachineGun());
+	weapons.insert(weapons.end(), new Laser());
+	weapons.insert(weapons.end(), new FlakCannon());
 };
 
 void Player::toggleThrustVectors()
@@ -27,9 +35,12 @@ void Player::toggleThrustVectors()
 
 void Player::update()
 {
-	if(cooldown > 0)
+	for(boost::ptr_vector<Weapon>::iterator iter=weapons.begin(); iter != weapons.end(); iter++)
 	{
-		cooldown--;
+		if(iter->cooldown > 0)
+		{
+			iter->cooldown--;
+		}
 	}
 	if(intSpeed < 30)
 	{
@@ -89,24 +100,17 @@ void Player::moveRight()
 
 void Player::fire()
 {
-	if(cooldown == 0)
+	weapons[currentWeapon].fire(pos);
+};
+
+void Player::switchWeapon()
+{
+	if((unsigned int)currentWeapon+1 < weapons.size())
 	{
-		Coordinate firePos1 = pos;
-		//firePos1.x += 1;
-		firePos1.y -= 10;
-		firePos1.z += 1;
-
-		//Coordinate firePos2 = pos;
-		//firePos2.x -= 1;
-		//firePos2.y -= 30;
-
-		//Bullet newBullet = Bullet(firePos,1,5,-rand()%10+95,2);
-		Bullet newBullet1 = Bullet(firePos1,100,5,-2,&Behaviors::Straight);
-		theState()->spawnBullet(newBullet1);
-
-		//Bullet newBullet2 = Bullet(firePos2,100,5,2,&Behaviors::Bullet);
-		//theState()->spawnBullet(newBullet2);
-
-		cooldown += 5 + rand()%4;
+		currentWeapon++;
+	}
+	else
+	{
+		currentWeapon = 0;
 	}
 };

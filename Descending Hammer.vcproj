@@ -257,15 +257,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\button.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\common.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\coordinate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\effect.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\effectManager.cpp"
 				>
 			</File>
 			<File
@@ -293,15 +297,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\level.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\main.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\mainScreen.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\menu.cpp"
 				>
 			</File>
 			<File
@@ -322,6 +326,10 @@
 			</File>
 			<File
 				RelativePath=".\weapon.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\weaponMeter.cpp"
 				>
 			</File>
 			<File
@@ -347,15 +355,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\button.h"
-				>
-			</File>
-			<File
 				RelativePath=".\common.h"
 				>
 			</File>
 			<File
 				RelativePath=".\coordinate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\effect.h"
+				>
+			</File>
+			<File
+				RelativePath=".\effectManager.h"
 				>
 			</File>
 			<File
@@ -383,11 +395,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\level.h"
+				RelativePath=".\mainScreen.h"
 				>
 			</File>
 			<File
-				RelativePath=".\mainScreen.h"
+				RelativePath=".\menu.h"
 				>
 			</File>
 			<File
@@ -416,6 +428,10 @@
 			</File>
 			<File
 				RelativePath=".\weapon.h"
+				>
+			</File>
+			<File
+				RelativePath=".\weaponMeter.h"
 				>
 			</File>
 			<File

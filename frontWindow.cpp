@@ -5,6 +5,8 @@
 #include "world.h"
 #include "math.h"
 #include "queue"
+#include "list"
+#include "effect.h"
 
 FrontWindow::FrontWindow(BITMAP* parentScreen)
 {
@@ -40,45 +42,53 @@ FrontWindow::FrontWindow(BITMAP* parentScreen, int w, int h)
 
 void FrontWindow::draw()
 {
-	clear_bitmap(m_subScreen);
+	//clear_bitmap(m_subScreen);
+
+	//Draw booms yo
+	for(std::list<Effect>::iterator iter = theState()->effectManager.effects.begin(); iter!= theState()->effectManager.effects.end(); iter++)
+	{
+		if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
+		{
+			double s = (iter->pos.y-theState()->player.pos.y+fovY)/fovY;
+			int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
+			int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
+			
+			drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,iter->draw(),-1));
+		}
+	}
 
 	//Draw bullets and stuf
-	for(std::list<Bullet>::iterator iter = theState()->bulletManager->bullets.begin(); iter!= theState()->bulletManager->bullets.end(); iter++)
+	for(std::list<Bullet>::iterator iter = theState()->bulletManager.bullets.begin(); iter!= theState()->bulletManager.bullets.end(); iter++)
 	{
-		for(int i=0; i<iter->trail; i++)
+		if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
 		{
-			if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
-			{
-
-				double s = (iter->pos.y-theState()->player.pos.y+fovY)/fovY;
-
-				int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
-				int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
-				
-				int c = colors[std::max<int>(8-s*4,4)];
-				drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,iter->image,c));
-				
-				/*
-				int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
-				int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
-				int s = (fovY)/(theState()->player.pos.y-iter->pos.y);
-				//int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),8);
-				int c = colors[std::max<int>(8-s/4,4)];
-				
-				drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,true,c));
-				*/
-			}
+			double s = (iter->pos.y-theState()->player.pos.y+fovY)/fovY;
+			int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
+			int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
+			
+			int c = colors[std::max<int>(8-s*4,4)];
+			drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,iter->image,c));
+			
+			/*
+			int x = (((iter->pos.x-theState()->player.pos.x)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovX/2)*(SCREEN_W/fovX);
+			int y = (((iter->pos.z-theState()->player.pos.z)*20000/pow((theState()->player.pos.y-iter->pos.y),2))+fovZ/2)*(200/fovZ);
+			int s = (fovY)/(theState()->player.pos.y-iter->pos.y);
+			//int s = MIN(MAX((int)(fovY/(theState()->player.pos.y-iter->pos.y)),1),8);
+			int c = colors[std::max<int>(8-s/4,4)];
+			
+			drawOrder.push(DrawableWrapper(x,y,iter->pos.y,s,true,c));
+			*/
 		}
 	}
 
 	//Draw bad dudes
-	for(std::list<Enemy>::iterator iter = theState()->enemyManager->enemies.begin(); iter!= theState()->enemyManager->enemies.end(); iter++)
+	for(std::list<Enemy>::iterator iter = theState()->enemyManager.enemies.begin(); iter!= theState()->enemyManager.enemies.end(); iter++)
 	{
 		if(iter->pos.y>theState()->player.pos.y-fovY && iter->pos.y<theState()->player.pos.y)
 		{
 
 			//double s = MIN(MAX((int)(fovY*5/(theState()->player.pos.y-iter->pos.y)),1),60);
-			double s = (iter->pos.y-theState()->player.pos.y+fovY)/fovY;
+			double s = (iter->pos.y-theState()->player.pos.y+fovY)/(fovY);
 
 			//int x = fovX/2+((fovX/(theState()->player.pos.x-iter->pos.x+fovX))*(fovX/2));
 			//int y = fovZ/2+((fovZ/(theState()->player.pos.z-iter->pos.z+fovZ))*(fovZ/2));

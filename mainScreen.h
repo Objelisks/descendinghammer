@@ -6,6 +6,7 @@
 #include "screen.h"
 #include "vector"
 #include "subScreen.h"
+#include "effect.h"
 #include "boost/ptr_container/ptr_list.hpp"
 
 class MainScreen : public Screen
@@ -18,6 +19,7 @@ private:
 	void drawSubScreens();
 	RLE_SPRITE* hud;
 	bool init;
+	Effect spoiler;
 };
 
 #endif

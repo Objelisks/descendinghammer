@@ -4,9 +4,6 @@
 #include "ctime"
 #include "common.h"
 
-bool GAME_ENDED = false;
-
-
 //timing code
 volatile int frameCounter;
 
@@ -33,21 +30,31 @@ void mainKeyCheck()
 {
 	if(key[KEY_ESC])
 	{
-		GAME_ENDED = true;
+		theState()->GAME_ENDED = true;
 	}
 };
 
 void gameKeyCheck()
 {
-	handleInput();
+	if(theState()->currentScreen->name == "Menu")
+	{
+		menuInput();
+	}
+	else if (theState()->currentScreen->name == "MainScreen")
+	{
+		handleInput();
+	}
 };
 
 void logic()
 {
 	mainKeyCheck();
 	gameKeyCheck();
-	theState()->updateWorld();
-	//theState()->currentLevel->spawnEnemies();
+	if(theState()->currentScreen->name == "MainScreen")
+	{
+		theState()->updateWorld();
+		theState()->difficate();
+	}
 
 	//menus
 
@@ -70,11 +77,7 @@ void draw()
 int main(void)
 {
         allegro_init();
-		int erra = install_keyboard();
-		if(erra != 0)
-		{
-			allegro_message("ohshi");
-		}
+		install_keyboard();
 		install_mouse();
 		install_timer();
 		set_color_depth(16);
@@ -91,7 +94,7 @@ int main(void)
 		theState()->Initialize();
 
 		bool needRedraw = false;
-		while(!GAME_ENDED)
+		while(!theState()->GAME_ENDED)
 		{
 			while(speed_counter > 0) 
 			{

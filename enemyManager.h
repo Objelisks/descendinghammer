@@ -10,7 +10,7 @@ public:
 	
 	std::list<Enemy> enemies;	
 
-	void spawnEnemy(Enemy e);
+	void addEnemy(Enemy e);
 	void moveAll();
 	void collideEnemyWithBullets(Enemy e);
 };
