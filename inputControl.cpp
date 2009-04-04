@@ -95,10 +95,6 @@ void handleInput()
 		keyDownZ = false;
 	}
 	
-	if(key[KEY_1])
-	{
-		theState()->ending = true;
-	}
 	/*
 	if(key[KEY_2])
 	{
