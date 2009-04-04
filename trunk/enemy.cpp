@@ -10,7 +10,7 @@ Enemy::Enemy()
 	move = 0;
 	life = 1;
 	speed = 1;
-	image = theState()->resources.images["ship"+toString(rand()%3+1)+".bmp"];
+	image = theState()->resources.images["ship"+toString(rand()%3+1)];
 	size = image->w/10;
 	dead = false;
 };
@@ -22,7 +22,7 @@ Enemy::Enemy(void (*m)(Coordinate* ,int, double))
 	health = 100;
 	life = 1;
 	speed = 1;
-	image = theState()->resources.images["ship"+toString(rand()%3+1)+".bmp"];
+	image = theState()->resources.images["ship"+toString(rand()%3+1)];
 	size = image->w/10;
 	dead = false;
 };
@@ -41,6 +41,12 @@ void Enemy::update()
 		if(pos.y > theState()->world.y && theState()->humansToKill < 4294967294)
 		{
 			theState()->humansToKill+=100000;
+		}
+		else
+		{
+			theState()->addText("Enemy destroyed!");
+			theState()->score++;
+			theState()->addEffect(Effect(theState()->resources.effects["Explode"],pos,5,false));
 		}
 		dead = true;
 	}

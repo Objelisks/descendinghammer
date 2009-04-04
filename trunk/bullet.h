@@ -6,10 +6,9 @@
 class Bullet {
 public:
 	Bullet();
-	Bullet(Coordinate co, int dmg, int t, double speed, void (*m)(Coordinate* ,int, double));
+	Bullet(Coordinate co, int dmg, double speed, void (*m)(Coordinate* ,int, double));
 	Coordinate pos;
 	int damage;
-	int trail;
 	double speed;
 	int life;
 	void (*move)(Coordinate* ,int, double);

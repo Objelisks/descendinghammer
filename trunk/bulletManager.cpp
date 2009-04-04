@@ -1,5 +1,4 @@
 #include "bulletManager.h"
-#include "gameState.h"
 #include "list"
 
 BulletManager::BulletManager()
@@ -7,7 +6,7 @@ BulletManager::BulletManager()
 	bullets = std::list<Bullet>();
 };
 
-void BulletManager::spawnBullet(Bullet b)
+void BulletManager::addBullet(Bullet b)
 {
 	bullets.insert(bullets.begin(),b);
 };

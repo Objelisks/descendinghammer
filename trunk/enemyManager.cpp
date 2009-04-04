@@ -1,13 +1,12 @@
 #include "enemyManager.h"
 #include "list"
-#include "gameState.h"
 
 EnemyManager::EnemyManager()
 {
 	enemies = std::list<Enemy>();
 };
 
-void EnemyManager::spawnEnemy(Enemy e)
+void EnemyManager::addEnemy(Enemy e)
 {
 	enemies.insert(enemies.begin(),e);
 };

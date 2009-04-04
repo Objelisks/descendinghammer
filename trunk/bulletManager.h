@@ -10,7 +10,7 @@ public:
 
 	std::list<Bullet> bullets;	
 
-	void spawnBullet(Bullet b);
+	void addBullet(Bullet b);
 	void moveAll();
 };
 

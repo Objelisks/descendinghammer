@@ -7,20 +7,18 @@
 Bullet::Bullet() {
 	pos = Coordinate(0,0,0);
 	damage = 1;
-	trail = 1;
 	speed = 1;
-	image = theState()->resources.images["bullet.bmp"];
+	image = theState()->resources.images["bullet"];
 	dead = false;
 };
 
-Bullet::Bullet(Coordinate co, int dmg, int t, double s, void (*m)(Coordinate* ,int, double))
+Bullet::Bullet(Coordinate co, int dmg, double s, void (*m)(Coordinate* ,int, double))
 {
 	pos = co;
 	damage = dmg;
-	trail = t;
 	speed = s;
 	move = m;
-	image = theState()->resources.images["bullet.bmp"];
+	image = theState()->resources.images["bullet"];
 	life = 1;
 	dead = false;
 };

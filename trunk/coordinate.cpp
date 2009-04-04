@@ -5,6 +5,10 @@
 
 Coordinate::Coordinate() {x=0;y=0;z=0;};
 Coordinate::Coordinate(double a, double b, double c) {x=a;y=b;z=c;};
+Coordinate Coordinate::offset(double a, double b, double c)
+{
+	return Coordinate(x+a,y+b,z+c);
+};
 
 float distance(Coordinate p1, Coordinate p2)
 {

@@ -27,17 +27,17 @@ void Indicator::draw()
 	}
 };
 
-Indicator::Indicator(BITMAP* parentScreen, IndicatorType _type, int* _value,int x,int y)
+Indicator::Indicator(BITMAP* parentScreen, BITMAP* img, IndicatorType _type, int* _value,int x,int y)
 {
 	type = _type;
 	value = _value;
 	switch(type)
 	{
 	case IND_METER:
-		image = get_rle_sprite(theState()->resources.images["meter.bmp"]);
+		image = get_rle_sprite(img);
 		break;
 	case IND_LIGHT:
-		image = get_rle_sprite(theState()->resources.images["light.bmp"]);
+		image = get_rle_sprite(img);
 		break;
 	}
 	if(image)
